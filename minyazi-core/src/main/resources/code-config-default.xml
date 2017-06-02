@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 代码配置文件 -->
+<codes>
+    <!--
+        name        : 代码名称
+        description : 代码描述
+    -->
+    <code name="filter" description="字符过滤器">
+        <!--
+            key   : 代码项键
+            value : 代码项值
+        -->
+        <item key="html" value="com.minyazi.core.util.filter.HtmlStringFilter" />
+        <item key="lower" value="com.minyazi.core.util.filter.LowerStringFilter" />
+        <item key="upper" value="com.minyazi.core.util.filter.UpperStringFilter" />
+    </code>
+</codes>

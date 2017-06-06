@@ -2,13 +2,25 @@ package com.minyazi.dao.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * 处理信息
  * 
  * @author minyazi
  */
+@Entity
+@Table(name="ProcessInfo")
 public class ProcessInfoDO implements Serializable {
     private static final long serialVersionUID = 1L;
+    /**
+     * 标识属性
+     */
+    private Integer id;
     /**
      * 处理码
      */
@@ -24,6 +36,18 @@ public class ProcessInfoDO implements Serializable {
         this.processCode = processCode;
     }
     
+    @Id
+    @GeneratedValue
+    @Column(name="id")
+    public Integer getId() {
+        return id;
+    }
+    
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
+    @Column(name="processCode")
     public String getProcessCode() {
         return this.processCode;
     }
@@ -32,6 +56,7 @@ public class ProcessInfoDO implements Serializable {
         this.processCode = processCode;
     }
     
+    @Column(name="processMesg")
     public String getProcessMesg() {
         return this.processMesg;
     }

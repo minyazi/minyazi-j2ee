@@ -20,6 +20,12 @@
             <artifactId>minyazi-core</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <!-- hibernate-jpa-2.0-api -->
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
+            <version>1.0.0.Final</version>
+        </dependency>
         <!-- slf4j-log4j12 -->
         <dependency>
             <groupId>org.slf4j</groupId>

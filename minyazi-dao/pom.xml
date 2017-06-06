@@ -14,22 +14,25 @@
     <name>Minyazi J2EE DAO</name>
     
     <dependencies>
+        <!-- minyazi-core -->
         <dependency>
-            <groupId>com.mchange</groupId>
-            <artifactId>c3p0</artifactId>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>minyazi-core</artifactId>
+            <version>${project.version}</version>
         </dependency>
+        <!-- slf4j-log4j12 -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
+            <optional>true</optional>
         </dependency>
+        <!-- log4j -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
+            <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
+        <!-- junit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

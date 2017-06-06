@@ -31,18 +31,21 @@
                     <artifactId>xml-apis</artifactId>
                 </exclusion>
             </exclusions>
+            <optional>true</optional>
         </dependency>
         <!-- poi -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>3.10.1</version>
+            <optional>true</optional>
         </dependency>
         <!-- commons-dbutils -->
         <dependency>
             <groupId>commons-dbutils</groupId>
             <artifactId>commons-dbutils</artifactId>
             <version>1.6</version>
+            <optional>true</optional>
         </dependency>
         <!-- slf4j-api -->
         <dependency>
@@ -54,21 +57,25 @@
         <dependency>
             <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>
+            <optional>true</optional>
         </dependency>
         <!-- mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <optional>true</optional>
         </dependency>
         <!-- slf4j-log4j12 -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
+            <optional>true</optional>
         </dependency>
         <!-- log4j -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
+            <optional>true</optional>
         </dependency>
         <!-- junit -->
         <dependency>

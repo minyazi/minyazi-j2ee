@@ -138,6 +138,7 @@ public class CommonDaoImpl implements CommonDao {
     /**
      * 查询数据
      * 
+     * @param <T> 类型参数
      * @param clazz 类型参数
      * @param sql SQL语句
      * @return 查询结果
@@ -153,6 +154,7 @@ public class CommonDaoImpl implements CommonDao {
     /**
      * 查询数据
      * 
+     * @param <T> 类型参数
      * @param clazz 类型参数
      * @param sql SQL语句
      * @param params 参数集
@@ -170,6 +172,7 @@ public class CommonDaoImpl implements CommonDao {
     /**
      * 查询数据
      * 
+     * @param <T> 类型参数
      * @param clazz 类型参数
      * @param sql SQL语句
      * @return 查询结果
@@ -188,6 +191,7 @@ public class CommonDaoImpl implements CommonDao {
     /**
      * 查询数据
      * 
+     * @param <T> 类型参数
      * @param clazz 类型参数
      * @param sql SQL语句
      * @param params 参数集
@@ -368,6 +372,7 @@ public class CommonDaoImpl implements CommonDao {
     /**
      * 分页查询数据
      * 
+     * @param <T> 类型参数
      * @param clazz 类型参数
      * @param offset 开始记录索引
      * @param pageSize 每页记录数
@@ -383,6 +388,7 @@ public class CommonDaoImpl implements CommonDao {
     /**
      * 分页查询数据
      * 
+     * @param <T> 类型参数
      * @param clazz 类型参数
      * @param offset 开始记录索引
      * @param pageSize 每页记录数

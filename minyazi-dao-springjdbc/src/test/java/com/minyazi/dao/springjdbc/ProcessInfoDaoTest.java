@@ -18,7 +18,7 @@ public class ProcessInfoDaoTest {
     
     @Before
     public void init() throws Exception {
-        context = new ClassPathXmlApplicationContext("dao-springjdbc.xml");
+        context = new ClassPathXmlApplicationContext("minyazi-dao-springjdbc.xml");
         processInfoDao = context.getBean("processInfoDao", ProcessInfoDao.class);
         
         processInfoDao.deleteAll();

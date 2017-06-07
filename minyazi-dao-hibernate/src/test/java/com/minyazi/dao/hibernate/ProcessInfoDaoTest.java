@@ -18,7 +18,7 @@ public class ProcessInfoDaoTest {
     
     @Before
     public void init() throws Exception {
-        context = new ClassPathXmlApplicationContext("dao-hibernate.xml");
+        context = new ClassPathXmlApplicationContext("minyazi-dao-hibernate.xml");
         processInfoDao = context.getBean("processInfoDao", ProcessInfoDao.class);
         
         processInfoDao.deleteAll();

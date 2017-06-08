@@ -65,13 +65,13 @@ public class TowerOfHanoi {
      * @param toPosition 移动之后的位置
      */
     public void move(int moveDisk, String fromPosition, String toPosition) {
-        this.step++;
+        step++;
         if (steps.get(moveDisk) == null) {
             steps.put(moveDisk, 1);
         } else {
             steps.put(moveDisk, steps.get(moveDisk) + 1);
         }
-        LogUtil.debug("{}.move disk {} from {} to {}.", this.step, moveDisk, fromPosition, toPosition);
+        LogUtil.debug("{}.move disk {} from {} to {}.", step, moveDisk, fromPosition, toPosition);
     }
     
     public static void main(String[] args) {

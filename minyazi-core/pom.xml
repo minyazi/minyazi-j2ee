@@ -31,7 +31,6 @@
                     <artifactId>xml-apis</artifactId>
                 </exclusion>
             </exclusions>
-            <optional>true</optional>
         </dependency>
         <!-- poi -->
         <dependency>

@@ -9,7 +9,7 @@ import com.minyazi.dao.domain.ProcessInfoDO;
  * 
  * @author minyazi
  */
-public interface ProcessInfoDao {
+public interface ProcessInfoDao extends BaseDao, PagingDao {
     /**
      * 新增处理信息
      * 

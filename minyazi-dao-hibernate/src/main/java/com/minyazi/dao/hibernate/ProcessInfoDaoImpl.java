@@ -23,13 +23,13 @@ public class ProcessInfoDaoImpl extends DefaultDao implements ProcessInfoDao {
     
     @Override
     public ProcessInfoDO insert(ProcessInfoDO info) throws DaoException {
-        this.getCommonDao().getHibernateTemplate().save(info);
+        getHibernateTemplate().save(info);
         return info;
     }
     
     @Override
     public void deleteById(final String processCode) throws DaoException {
-        this.getCommonDao().getHibernateTemplate().execute(new HibernateCallback<Integer>() {
+        getHibernateTemplate().execute(new HibernateCallback<Integer>() {
             public Integer doInHibernate(Session session) throws HibernateException, SQLException {
                 return session.createQuery("delete from ProcessInfoDO where processCode=:processCode")
                     .setString("processCode", processCode)
@@ -40,7 +40,7 @@ public class ProcessInfoDaoImpl extends DefaultDao implements ProcessInfoDao {
     
     @Override
     public void deleteAll() throws DaoException {
-        this.getCommonDao().getHibernateTemplate().execute(new HibernateCallback<Integer>() {
+        getHibernateTemplate().execute(new HibernateCallback<Integer>() {
             public Integer doInHibernate(Session session) throws HibernateException, SQLException {
                 return session.createQuery("delete from ProcessInfoDO")
                     .executeUpdate();
@@ -50,13 +50,13 @@ public class ProcessInfoDaoImpl extends DefaultDao implements ProcessInfoDao {
     
     @Override
     public ProcessInfoDO update(ProcessInfoDO info) throws DaoException {
-        this.getCommonDao().getHibernateTemplate().update(info);
-        return this.selectById(info.getProcessCode());
+        getHibernateTemplate().update(info);
+        return selectById(info.getProcessCode());
     }
     
     @Override
     public ProcessInfoDO selectById(final String processCode) throws DaoException {
-        ProcessInfoDO info = this.getCommonDao().getHibernateTemplate().execute(new HibernateCallback<ProcessInfoDO>() {
+        ProcessInfoDO info = getHibernateTemplate().execute(new HibernateCallback<ProcessInfoDO>() {
             public ProcessInfoDO doInHibernate(Session session) throws HibernateException, SQLException {
                 return (ProcessInfoDO) session.createQuery("from ProcessInfoDO where processCode=:processCode")
                     .setString("processCode", processCode)
@@ -69,12 +69,12 @@ public class ProcessInfoDaoImpl extends DefaultDao implements ProcessInfoDao {
     @Override
     @SuppressWarnings("unchecked")
     public List<ProcessInfoDO> selectAll() throws DaoException {
-        return (List<ProcessInfoDO>) this.getCommonDao().getHibernateTemplate().find("from ProcessInfoDO order by processCode");
+        return (List<ProcessInfoDO>) getHibernateTemplate().find("from ProcessInfoDO order by processCode");
     }
     
     @Override
     public int getTotalNumber() throws DaoException {
-        Long totalNumber = this.getCommonDao().getHibernateTemplate().execute(new HibernateCallback<Long>() {
+        Long totalNumber = getHibernateTemplate().execute(new HibernateCallback<Long>() {
             public Long doInHibernate(Session session) throws HibernateException, SQLException {
                 return (Long) session.createQuery("select count(*) from ProcessInfoDO")
                     .uniqueResult();
@@ -86,7 +86,7 @@ public class ProcessInfoDaoImpl extends DefaultDao implements ProcessInfoDao {
     @Override
     @SuppressWarnings("unchecked")
     public List<ProcessInfoDO> selectToPaging(final int offset, final int pageSize) throws DaoException {
-        return this.getCommonDao().getHibernateTemplate().execute(new HibernateCallback<List<ProcessInfoDO>>() {
+        return getHibernateTemplate().execute(new HibernateCallback<List<ProcessInfoDO>>() {
             public List<ProcessInfoDO> doInHibernate(Session session) throws HibernateException, SQLException {
                 return (List<ProcessInfoDO>) session.createQuery("from ProcessInfoDO order by processCode")
                     .setFirstResult(offset)
@@ -98,7 +98,7 @@ public class ProcessInfoDaoImpl extends DefaultDao implements ProcessInfoDao {
     
     @Override
     public int getTotalNumber(final String queryCondition) throws DaoException {
-        Long totalNumber = this.getCommonDao().getHibernateTemplate().execute(new HibernateCallback<Long>() {
+        Long totalNumber = getHibernateTemplate().execute(new HibernateCallback<Long>() {
             public Long doInHibernate(Session session) throws HibernateException, SQLException {
                 return (Long) session.createQuery("select count(*) from ProcessInfoDO where 1=1 :queryCondition")
                     .setString("queryCondition", queryCondition)
@@ -111,7 +111,7 @@ public class ProcessInfoDaoImpl extends DefaultDao implements ProcessInfoDao {
     @Override
     @SuppressWarnings("unchecked")
     public List<ProcessInfoDO> selectToPaging(final int offset, final int pageSize, final String queryCondition) throws DaoException {
-        return this.getCommonDao().getHibernateTemplate().execute(new HibernateCallback<List<ProcessInfoDO>>() {
+        return getHibernateTemplate().execute(new HibernateCallback<List<ProcessInfoDO>>() {
             public List<ProcessInfoDO> doInHibernate(Session session) throws HibernateException, SQLException {
                 return (List<ProcessInfoDO>) session.createQuery("from ProcessInfoDO where 1=1 and :queryCondition order by processCode")
                     .setString("queryCondition", queryCondition)

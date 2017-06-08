@@ -28,7 +28,7 @@ public class ProcessInfoDaoImpl extends DefaultDao implements ProcessInfoDao {
         Object[] params = {info.getProcessCode(),
                 info.getProcessMesg()};
         
-        int result = this.getCommonDao().update(sql.toString(), params);
+        int result = getCommonDao().update(sql.toString(), params);
         if (result != 1) {
             throw new DaoException("新增处理信息失败");
         }
@@ -43,14 +43,14 @@ public class ProcessInfoDaoImpl extends DefaultDao implements ProcessInfoDao {
         
         Object[] params = {processCode};
         
-        this.getCommonDao().update(sql.toString(), params);
+        getCommonDao().update(sql.toString(), params);
     }
     
     @Override
     public void deleteAll() throws DaoException {
         StringBuilder sql = new StringBuilder(500);
         sql.append("delete from ProcessInfo");
-        this.getCommonDao().update(sql.toString());
+        getCommonDao().update(sql.toString());
     }
     
     @Override
@@ -63,12 +63,12 @@ public class ProcessInfoDaoImpl extends DefaultDao implements ProcessInfoDao {
         Object[] params = {info.getProcessMesg(),
                 info.getProcessCode()};
         
-        int result = this.getCommonDao().update(sql.toString(), params);
+        int result = getCommonDao().update(sql.toString(), params);
         if (result != 1) {
             throw new DaoException("修改处理信息失败");
         }
         
-        return this.selectById(info.getProcessCode());
+        return selectById(info.getProcessCode());
     }
     
     @Override
@@ -78,21 +78,21 @@ public class ProcessInfoDaoImpl extends DefaultDao implements ProcessInfoDao {
         
         Object[] params = {processCode};
         
-        return this.getCommonDao().selectToBean(ProcessInfoDO.class, sql.toString(), params);
+        return getCommonDao().selectToBean(ProcessInfoDO.class, sql.toString(), params);
     }
     
     @Override
     public List<ProcessInfoDO> selectAll() throws DaoException {
         StringBuilder sql = new StringBuilder(500);
         sql.append("select * from ProcessInfo order by processCode");
-        return this.getCommonDao().selectToList(ProcessInfoDO.class, sql.toString());
+        return getCommonDao().selectToList(ProcessInfoDO.class, sql.toString());
     }
     
     @Override
     public int getTotalNumber() throws DaoException {
         StringBuilder sql = new StringBuilder(500);
         sql.append("select * from ProcessInfo");
-        return this.getCommonDao().getTotalNumber(sql.toString());
+        return getCommonDao().getTotalNumber(sql.toString());
     }
     
     @Override
@@ -100,14 +100,14 @@ public class ProcessInfoDaoImpl extends DefaultDao implements ProcessInfoDao {
     public List<ProcessInfoDO> selectToPaging(int offset, int pageSize) throws DaoException {
         StringBuilder sql = new StringBuilder(500);
         sql.append("select * from ProcessInfo order by processCode");
-        return this.getCommonDao().selectToPaging(ProcessInfoDO.class, offset, pageSize, sql.toString());
+        return getCommonDao().selectToPaging(ProcessInfoDO.class, offset, pageSize, sql.toString());
     }
     
     @Override
     public int getTotalNumber(String queryCondition) throws DaoException {
         StringBuilder sql = new StringBuilder(500);
         sql.append("select * from ProcessInfo where 1=1 ").append(queryCondition);
-        return this.getCommonDao().getTotalNumber(sql.toString());
+        return getCommonDao().getTotalNumber(sql.toString());
     }
     
     @Override
@@ -115,6 +115,6 @@ public class ProcessInfoDaoImpl extends DefaultDao implements ProcessInfoDao {
     public List<ProcessInfoDO> selectToPaging(int offset, int pageSize, String queryCondition) throws DaoException {
         StringBuilder sql = new StringBuilder(500);
         sql.append("select * from ProcessInfo where 1=1 ").append(queryCondition).append(" order by processCode");
-        return this.getCommonDao().selectToPaging(ProcessInfoDO.class, offset, pageSize, sql.toString());
+        return getCommonDao().selectToPaging(ProcessInfoDO.class, offset, pageSize, sql.toString());
     }
 }

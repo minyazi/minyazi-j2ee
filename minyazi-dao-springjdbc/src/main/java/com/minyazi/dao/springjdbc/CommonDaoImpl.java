@@ -52,7 +52,7 @@ public class CommonDaoImpl implements CommonDao {
      * @return 查询结果
      */
     public List<Map<String, Object>> selectToList(String sql) {
-        List<Map<String, Object>> result = this.getJdbcTemplate().queryForList(sql);
+        List<Map<String, Object>> result = getJdbcTemplate().queryForList(sql);
         
         LogUtil.info("（执行SQL）{}，（执行结果）{}", sql, result.size());
         
@@ -67,7 +67,7 @@ public class CommonDaoImpl implements CommonDao {
      * @return 查询结果
      */
     public List<Map<String, Object>> selectToList(String sql, Object... params) {
-        List<Map<String, Object>> result = this.getJdbcTemplate().queryForList(sql, params);
+        List<Map<String, Object>> result = getJdbcTemplate().queryForList(sql, params);
         
         LogUtil.info("（执行SQL）{}，（执行结果）{}", sql, result.size());
         LogUtil.info("（SQL参数）{}", Arrays.toString(params));
@@ -82,7 +82,7 @@ public class CommonDaoImpl implements CommonDao {
      * @return 查询结果
      */
     public List<Map<String, String>> selectToList2(String sql) {
-        List<Map<String, String>> result = this.getJdbcTemplate().query(sql, new ResultSetExtractor<List<Map<String, String>>>() {
+        List<Map<String, String>> result = getJdbcTemplate().query(sql, new ResultSetExtractor<List<Map<String, String>>>() {
             @Override
             public List<Map<String, String>> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<Map<String, String>> result = new ArrayList<Map<String, String>>();
@@ -112,7 +112,7 @@ public class CommonDaoImpl implements CommonDao {
      * @return 查询结果
      */
     public List<Map<String, String>> selectToList2(String sql, Object... params) {
-        List<Map<String, String>> result = this.getJdbcTemplate().query(sql, new ResultSetExtractor<List<Map<String, String>>>() {
+        List<Map<String, String>> result = getJdbcTemplate().query(sql, new ResultSetExtractor<List<Map<String, String>>>() {
             @Override
             public List<Map<String, String>> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<Map<String, String>> result = new ArrayList<Map<String, String>>();
@@ -144,7 +144,7 @@ public class CommonDaoImpl implements CommonDao {
      * @return 查询结果
      */
     public <T> List<T> selectToList(Class<T> clazz, String sql) {
-        List<T> result = this.getJdbcTemplate().query(sql, new BeanPropertyRowMapper<T>(clazz));
+        List<T> result = getJdbcTemplate().query(sql, new BeanPropertyRowMapper<T>(clazz));
         
         LogUtil.info("（执行SQL）{}，（执行结果）{}", sql, result.size());
         
@@ -161,7 +161,7 @@ public class CommonDaoImpl implements CommonDao {
      * @return 查询结果
      */
     public <T> List<T> selectToList(Class<T> clazz, String sql, Object... params) {
-        List<T> result = this.getJdbcTemplate().query(sql, new BeanPropertyRowMapper<T>(clazz), params);
+        List<T> result = getJdbcTemplate().query(sql, new BeanPropertyRowMapper<T>(clazz), params);
         
         LogUtil.info("（执行SQL）{}，（执行结果）{}", sql, result.size());
         LogUtil.info("（SQL参数）{}", Arrays.toString(params));
@@ -178,7 +178,7 @@ public class CommonDaoImpl implements CommonDao {
      * @return 查询结果
      */
     public <T> T selectToBean(Class<T> clazz, String sql) {
-        List<T> result = this.selectToList(clazz, sql);
+        List<T> result = selectToList(clazz, sql);
         
         T t = null;
         if (result.size() != 0) {
@@ -198,7 +198,7 @@ public class CommonDaoImpl implements CommonDao {
      * @return 查询结果
      */
     public <T> T selectToBean(Class<T> clazz, String sql, Object... params) {
-        List<T> result = this.selectToList(clazz, sql, params);
+        List<T> result = selectToList(clazz, sql, params);
         
         T t = null;
         if (result.size() != 0) {
@@ -215,7 +215,7 @@ public class CommonDaoImpl implements CommonDao {
      * @return 更新结果
      */
     public int update(String sql) {
-        int result = this.getJdbcTemplate().update(sql);
+        int result = getJdbcTemplate().update(sql);
         
         LogUtil.info("（执行SQL）{}，（执行结果）{}", sql, result);
         
@@ -230,7 +230,7 @@ public class CommonDaoImpl implements CommonDao {
      * @return 更新结果
      */
     public int update(String sql, Object... params) {
-        int result = this.getJdbcTemplate().update(sql, params);
+        int result = getJdbcTemplate().update(sql, params);
         
         LogUtil.info("（执行SQL）{}，（执行结果）{}", sql, result);
         LogUtil.info("（SQL参数）{}", Arrays.toString(params));
@@ -248,7 +248,7 @@ public class CommonDaoImpl implements CommonDao {
     public int insert(String tableName, Map<String, String> data) {
         StringBuilder sql = new StringBuilder(500);
         sql.append("select * from ").append(tableName);
-        SqlRowSet srs = this.getJdbcTemplate().queryForRowSet(sql.toString());
+        SqlRowSet srs = getJdbcTemplate().queryForRowSet(sql.toString());
         SqlRowSetMetaData srsmd = srs.getMetaData();
         int columnCount = srsmd.getColumnCount();
         
@@ -273,7 +273,7 @@ public class CommonDaoImpl implements CommonDao {
             sql = new StringBuilder(500);
             sql.append("insert into ").append(tableName).append(" (").append(fields).append(")");
             sql.append(" values (").append(values).append(")");
-            return this.update(sql.toString(), params);
+            return update(sql.toString(), params);
         } else {
             return 0;
         }
@@ -287,7 +287,7 @@ public class CommonDaoImpl implements CommonDao {
     public int getTotalNumber(String sql) {
         StringBuilder _sql = new StringBuilder(500);
         _sql.append("select count(*) from (").append(sql).append(") as T");
-        int result = this.getJdbcTemplate().queryForObject(_sql.toString(), Integer.class);
+        int result = getJdbcTemplate().queryForObject(_sql.toString(), Integer.class);
         
         LogUtil.info("（执行SQL）{}，（执行结果）{}", _sql.toString(), result);
         
@@ -303,7 +303,7 @@ public class CommonDaoImpl implements CommonDao {
     public int getTotalNumber(String sql, Object... params) {
         StringBuilder _sql = new StringBuilder(500);
         _sql.append("select count(*) from (").append(sql).append(") as T");
-        int result = this.getJdbcTemplate().queryForObject(_sql.toString(), Integer.class, params);
+        int result = getJdbcTemplate().queryForObject(_sql.toString(), Integer.class, params);
         
         LogUtil.info("（执行SQL）{}，（执行结果）{}", _sql.toString(), result);
         LogUtil.info("（SQL参数）{}", Arrays.toString(params));
@@ -322,7 +322,7 @@ public class CommonDaoImpl implements CommonDao {
     public List<Map<String, Object>> selectToPaging(int offset, int pageSize, String sql) {
         StringBuilder _sql = new StringBuilder(500);
         _sql.append(sql).append(" limit ").append(offset).append(",").append(pageSize);
-        return this.selectToList(_sql.toString());
+        return selectToList(_sql.toString());
     }
     
     /**
@@ -337,7 +337,7 @@ public class CommonDaoImpl implements CommonDao {
     public List<Map<String, Object>> selectToPaging(int offset, int pageSize, String sql, Object... params) {
         StringBuilder _sql = new StringBuilder(500);
         _sql.append(sql).append(" limit ").append(offset).append(",").append(pageSize);
-        return this.selectToList(_sql.toString(), params);
+        return selectToList(_sql.toString(), params);
     }
     
     /**
@@ -351,7 +351,7 @@ public class CommonDaoImpl implements CommonDao {
     public List<Map<String, String>> selectToPaging2(int offset, int pageSize, String sql) {
         StringBuilder _sql = new StringBuilder(500);
         _sql.append(sql).append(" limit ").append(offset).append(",").append(pageSize);
-        return this.selectToList2(_sql.toString());
+        return selectToList2(_sql.toString());
     }
     
     /**
@@ -366,7 +366,7 @@ public class CommonDaoImpl implements CommonDao {
     public List<Map<String, String>> selectToPaging2(int offset, int pageSize, String sql, Object... params) {
         StringBuilder _sql = new StringBuilder(500);
         _sql.append(sql).append(" limit ").append(offset).append(",").append(pageSize);
-        return this.selectToList2(_sql.toString(), params);
+        return selectToList2(_sql.toString(), params);
     }
     
     /**
@@ -382,7 +382,7 @@ public class CommonDaoImpl implements CommonDao {
     public <T> List<T> selectToPaging(Class<T> clazz, int offset, int pageSize, String sql) {
         StringBuilder _sql = new StringBuilder(500);
         _sql.append(sql).append(" limit ").append(offset).append(",").append(pageSize);
-        return this.selectToList(clazz, _sql.toString());
+        return selectToList(clazz, _sql.toString());
     }
     
     /**
@@ -399,6 +399,6 @@ public class CommonDaoImpl implements CommonDao {
     public <T> List<T> selectToPaging(Class<T> clazz, int offset, int pageSize, String sql, Object... params) {
         StringBuilder _sql = new StringBuilder(500);
         _sql.append(sql).append(" limit ").append(offset).append(",").append(pageSize);
-        return this.selectToList(clazz, _sql.toString(), params);
+        return selectToList(clazz, _sql.toString(), params);
     }
 }

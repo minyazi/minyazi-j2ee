@@ -11,25 +11,61 @@
     </parent>
     
     <artifactId>minyazi-dao-xml</artifactId>
-    <name>Minyazi J2EE DAO XML</name>
+    <name>Minyazi J2EE DAO XML Impl</name>
     
     <dependencies>
+        <!-- minyazi-core -->
         <dependency>
-            <groupId>com.mchange</groupId>
-            <artifactId>c3p0</artifactId>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>minyazi-core</artifactId>
+            <version>${project.version}</version>
         </dependency>
+        <!-- minyazi-dao -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>minyazi-dao</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!-- spring-core -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
+        <!-- spring-beans -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+        </dependency>
+        <!-- spring-context -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <!-- dom4j -->
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>xml-apis</groupId>
+                    <artifactId>xml-apis</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- slf4j-log4j12 -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
+            <optional>true</optional>
         </dependency>
+        <!-- log4j -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
+            <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
+        <!-- junit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

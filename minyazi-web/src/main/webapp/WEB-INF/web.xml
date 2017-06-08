@@ -31,6 +31,18 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            <!-- 方式一 -->
+            classpath:/minyazi-dao-springjdbc.xml,
+            classpath:/minyazi-service-springjdbc.xml
+            <!-- 方式二  
+            classpath*:minyazi-dao-springjdbc.xml,
+            classpath*:minyazi-service-springjdbc.xml
+            -->
+        </param-value>
+    </context-param>
     
     <!-- 设置会话失效时间为60分钟 -->
     <session-config>

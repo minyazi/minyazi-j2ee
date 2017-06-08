@@ -1,7 +1,5 @@
 package com.minyazi.web.action;
 
-import com.minyazi.web.base.BaseAction;
-
 /**
  * 权限检查Action
  * 
@@ -25,9 +23,9 @@ public class AuthorityAction extends BaseAction {
     @Override
     public String execute() throws Exception {
         if (session.get("Username") == null) {
-            this.setUsername("");
+            setUsername("");
         } else {
-            this.setUsername((String) session.get("Username"));
+            setUsername((String) session.get("Username"));
         }
         return SUCCESS;
     }

@@ -8,7 +8,6 @@ import org.apache.struts2.ServletActionContext;
 import com.minyazi.core.PlatformException;
 import com.minyazi.core.util.FileUtil;
 import com.minyazi.core.util.LogUtil;
-import com.minyazi.web.base.BaseAction;
 
 /**
  * 文件上传下载Action
@@ -111,22 +110,22 @@ public class FileAction extends BaseAction {
      * @throws Exception 处理异常
      */
     public String upload() throws Exception {
-        if (!this.checkFileType()) {
-            this.setMessage("上传的文件类型不在（" + allowedTypes + "）范围内！");
-            LogUtil.exception(new PlatformException(this.getMessage()));
+        if (!checkFileType()) {
+            setMessage("上传的文件类型不在（" + allowedTypes + "）范围内！");
+            LogUtil.exception(new PlatformException(getMessage()));
             return ERROR;
         }
-        if (!this.checkFileSize()) {
-            this.setMessage("上传的文件大小不能超过" + maximumSize / 1024 / 1024 + "M！");
-            LogUtil.exception(new PlatformException(this.getMessage()));
+        if (!checkFileSize()) {
+            setMessage("上传的文件大小不能超过" + maximumSize / 1024 / 1024 + "M！");
+            LogUtil.exception(new PlatformException(getMessage()));
             return ERROR;
         }
         
         // 保存文件
         FileUtil.saveFile(upload, ServletActionContext.getServletContext().getRealPath("/"), uploadFileName);
         
-        this.setNamespace(address.substring(0, address.lastIndexOf("/")));
-        this.setAction(address.substring(address.lastIndexOf("/") + 1));
+        setNamespace(address.substring(0, address.lastIndexOf("/")));
+        setAction(address.substring(address.lastIndexOf("/") + 1));
         
         return SUCCESS;
     }
@@ -138,11 +137,11 @@ public class FileAction extends BaseAction {
      * @throws Exception 处理异常
      */
     public String download() throws Exception {
-        this.setUploadFileName(new String(uploadFileName.getBytes(), "ISO-8859-1"));
-        this.setDownload(ServletActionContext.getServletContext().getResourceAsStream("/" + uploadFileName));
+        setUploadFileName(new String(uploadFileName.getBytes(), "ISO-8859-1"));
+        setDownload(ServletActionContext.getServletContext().getResourceAsStream("/" + uploadFileName));
         if (download == null) {
-            this.setMessage("下载文件失败，文件不存在！");
-            LogUtil.exception(new PlatformException(this.getMessage()));
+            setMessage("下载文件失败，文件不存在！");
+            LogUtil.exception(new PlatformException(getMessage()));
             return ERROR;
         }
         return SUCCESS;
@@ -158,8 +157,8 @@ public class FileAction extends BaseAction {
         // 删除文件
         FileUtil.deleteFile(ServletActionContext.getServletContext().getRealPath("/"), uploadFileName);
         
-        this.setNamespace(address.substring(0, address.lastIndexOf("/")));
-        this.setAction(address.substring(address.lastIndexOf("/") + 1));
+        setNamespace(address.substring(0, address.lastIndexOf("/")));
+        setAction(address.substring(address.lastIndexOf("/") + 1));
         
         return SUCCESS;
     }

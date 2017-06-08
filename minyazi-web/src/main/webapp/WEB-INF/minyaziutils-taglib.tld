@@ -4,7 +4,7 @@
     <description>敏伢子的自定义标签库</description>
     <tlib-version>1.0</tlib-version>
     <short-name>m</short-name>
-    <uri>https://github.com/minyazi/minyazi-core/taglib</uri>
+    <uri>https://github.com/minyazi/minyazi-web/taglib</uri>
     <tag>
         <description>字符过滤器</description>
         <name>filter</name>

@@ -16,9 +16,6 @@
     
     <properties>
         <struts2.version>2.3.24.1</struts2.version>
-        <springframework.version>4.2.4.RELEASE</springframework.version>
-        <hibernate.version>3.6.0.Final</hibernate.version>
-        <mybatis.version>3.4.1</mybatis.version>
     </properties>
     
     <dependencies>
@@ -26,6 +23,12 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>minyazi-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!-- minyazi-service -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>minyazi-service</artifactId>
             <version>${project.version}</version>
         </dependency>
         <!-- servlet-api -->
@@ -60,154 +63,37 @@
             <artifactId>struts2-json-plugin</artifactId>
             <version>${struts2.version}</version>
         </dependency>
-        <!-- spring-aop -->
+        <!-- spring-core -->
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
-            <version>${springframework.version}</version>
-        </dependency>
-        <!-- spring-aspects -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aspects</artifactId>
-            <version>${springframework.version}</version>
+            <artifactId>spring-core</artifactId>
         </dependency>
         <!-- spring-beans -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
-            <version>${springframework.version}</version>
         </dependency>
         <!-- spring-context -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>${springframework.version}</version>
-        </dependency>
-        <!-- spring-context-support -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <version>${springframework.version}</version>
-        </dependency>
-        <!-- spring-core -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${springframework.version}</version>
-        </dependency>
-        <!-- spring-expression -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-expression</artifactId>
-            <version>${springframework.version}</version>
-        </dependency>
-        <!-- spring-instrument -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-instrument</artifactId>
-            <version>${springframework.version}</version>
-        </dependency>
-        <!-- spring-instrument-tomcat -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-instrument-tomcat</artifactId>
-            <version>${springframework.version}</version>
-        </dependency>
-        <!-- spring-jdbc -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>${springframework.version}</version>
-        </dependency>
-        <!-- spring-jms -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jms</artifactId>
-            <version>${springframework.version}</version>
-        </dependency>
-        <!-- spring-messaging -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-messaging</artifactId>
-            <version>${springframework.version}</version>
-        </dependency>
-        <!-- spring-orm -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>${springframework.version}</version>
-        </dependency>
-        <!-- spring-oxm -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-oxm</artifactId>
-            <version>${springframework.version}</version>
-        </dependency>
-        <!-- spring-test -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${springframework.version}</version>
-        </dependency>
-        <!-- spring-tx -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-            <version>${springframework.version}</version>
         </dependency>
         <!-- spring-web -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>${springframework.version}</version>
         </dependency>
-        <!-- spring-webmvc -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>${springframework.version}</version>
-        </dependency>
-        <!-- spring-webmvc-portlet -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc-portlet</artifactId>
-            <version>${springframework.version}</version>
-        </dependency>
-        <!-- spring-websocket -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-websocket</artifactId>
-            <version>${springframework.version}</version>
-        </dependency>
-        <!-- hibernate-core -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>${hibernate.version}</version>
-        </dependency>
-        <!-- mybatis -->
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>${mybatis.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.mchange</groupId>
-            <artifactId>c3p0</artifactId>
-        </dependency>
+        <!-- slf4j-log4j12 -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
         </dependency>
+        <!-- log4j -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
         </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
+        <!-- junit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -215,6 +101,7 @@
     </dependencies>
     
     <build>
+        <finalName>minyazi-web</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

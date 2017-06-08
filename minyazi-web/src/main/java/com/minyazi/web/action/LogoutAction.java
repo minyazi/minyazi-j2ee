@@ -1,7 +1,5 @@
 package com.minyazi.web.action;
 
-import com.minyazi.web.base.BaseAction;
-
 /**
  * 系统退出Action
  * 

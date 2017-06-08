@@ -19,7 +19,7 @@ public class CodeInitApplicationListener implements ServletContextListener {
      */
     public void contextInitialized(ServletContextEvent sce) {
         // 初始化代码列表
-        CodeUtil.init("code-config.xml");;
+        CodeUtil.init("code-config.xml");
         
         ServletContext application = sce.getServletContext();
         application.setAttribute("CODES", CodeUtil.getCodes());

@@ -1,7 +1,5 @@
 package com.minyazi.web.action;
 
-import com.minyazi.web.base.BaseAction;
-
 /**
  * 系统登录Action
  * 
@@ -34,6 +32,7 @@ public class LoginAction extends BaseAction {
     /**
      * 进入系统登录页面时调用
      */
+    @Override
     public String input() throws Exception {
         return SUCCESS;
     }

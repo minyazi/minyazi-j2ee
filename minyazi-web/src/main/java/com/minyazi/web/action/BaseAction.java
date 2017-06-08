@@ -1,4 +1,4 @@
-package com.minyazi.web.base;
+package com.minyazi.web.action;
 
 import java.util.Map;
 
@@ -28,17 +28,11 @@ public abstract class BaseAction extends ActionSupport implements ApplicationAwa
     
     public BaseAction() {}
     
-    /**
-     * Struts2依赖注入
-     */
     @Override
     public void setApplication(Map<String, Object> application) {
         this.application = application;
     }
     
-    /**
-     * Struts2依赖注入
-     */
     @Override
     public void setSession(Map<String, Object> session) {
         this.session = session;
@@ -51,9 +45,6 @@ public abstract class BaseAction extends ActionSupport implements ApplicationAwa
         LogUtil.info(log.toString());
     }
     
-    /**
-     * Struts2依赖注入
-     */
     @Override
     public void setRequest(Map<String, Object> request) {
         this.request = request;

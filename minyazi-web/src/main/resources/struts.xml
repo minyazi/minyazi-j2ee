@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-    <constant name="struts.devMode" value="true"/>
-    <constant name="struts.i18n.encoding" value="UTF-8"/>
-    <constant name="struts.ognl.allowStaticMethodAccess" value="true"/>
-    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
-    <constant name="struts.multipart.maxSize" value="1073741824"/><!-- 1G -->
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <constant name="struts.multipart.maxSize" value="1073741824" /><!-- 1G -->
     
     <package name="default" namespace="" extends="struts-default">
         <action name="*">
@@ -25,14 +25,14 @@
     <package name="root" namespace="/root" extends="struts-default">
         <interceptors>
             <!-- 异常记录拦截器 -->
-            <interceptor name="exceptionInterceptor" class="com.minyazi.web.interceptor.ExceptionInterceptor"/>
+            <interceptor name="exceptionInterceptor" class="com.minyazi.web.interceptor.ExceptionInterceptor" />
             <interceptor-stack name="exceptionStack">
-                <interceptor-ref name="defaultStack"/>
-                <interceptor-ref name="exceptionInterceptor"/>
+                <interceptor-ref name="defaultStack" />
+                <interceptor-ref name="exceptionInterceptor" />
             </interceptor-stack>
         </interceptors>
         
-        <default-interceptor-ref name="exceptionStack"/>
+        <default-interceptor-ref name="exceptionStack" />
         
         <global-results>
             <result name="login" type="redirect">/login.jsp</result>
@@ -42,7 +42,7 @@
         
         <!-- 声明式异常 -->
         <global-exception-mappings>
-            <exception-mapping result="exception" exception="java.lang.Exception"/>
+            <exception-mapping result="exception" exception="java.lang.Exception" />
         </global-exception-mappings>
     </package>
     
@@ -65,14 +65,14 @@
     <package name="secure" namespace="/secure" extends="root">
         <interceptors>
             <!-- 权限检查拦截器 -->
-            <interceptor name="authorityInterceptor" class="com.minyazi.web.interceptor.AuthorityInterceptor"/>
+            <interceptor name="authorityInterceptor" class="com.minyazi.web.interceptor.AuthorityInterceptor" />
             <interceptor-stack name="authorityStack">
-                <interceptor-ref name="exceptionStack"/>
-                <interceptor-ref name="authorityInterceptor"/>
+                <interceptor-ref name="exceptionStack" />
+                <interceptor-ref name="authorityInterceptor" />
             </interceptor-stack>
         </interceptors>
         
-        <default-interceptor-ref name="authorityStack"/>
+        <default-interceptor-ref name="authorityStack" />
         
         <action name="index">
             <result name="success">/jsp/index.jsp</result>
@@ -110,5 +110,5 @@
         </action>
     </package>
     
-    <include file="struts-minyazi.xml"/>
+    <include file="struts-minyazi.xml" />
 </struts>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 代码配置文件 -->
+<codes>
+    <code name="OperatorCode" description="运算符">
+        <item key="=" value="等于" />
+        <item key="&lt;" value="小于" />
+        <item key="&gt;" value="大于" />
+        <item key="!=" value="不等于" />
+        <item key="&lt;=" value="小于等于" />
+        <item key="&gt;=" value="大于等于" />
+    </code>
+    <code name="HolidayFlag" description="节假日标志">
+        <item key="HF00" value="节假日" />
+        <item key="HF01" value="非节假日" />
+    </code>
+    <code name="CurrencyCode" description="币种代码">
+        <item key="AUD" value="澳元" />
+        <item key="CAD" value="加元" />
+        <item key="CHF" value="瑞士法郎" />
+        <item key="CNY" value="人民币" />
+        <item key="EUR" value="欧元" />
+        <item key="GBP" value="英镑" />
+        <item key="HKD" value="港币" />
+        <item key="JPY" value="日元" />
+        <item key="KRW" value="韩元" />
+        <item key="MOP" value="澳门元" />
+        <item key="USD" value="美元" />
+        <item key="THB" value="泰铢" />
+        <item key="TWD" value="新台币" />
+    </code>
+    <code name="CountryCode" description="国家/地区代码">
+        <item key="AUS" value="澳大利亚" />
+        <item key="CAN" value="加拿大" />
+        <item key="CHE" value="瑞士" />
+        <item key="CHN" value="中国" />
+        <item key="DEU" value="德国" />
+        <item key="FRA" value="法国" />
+        <item key="ITA" value="意大利" />
+        <item key="NLD" value="荷兰" />
+        <item key="BEL" value="比利时" />
+        <item key="LUX" value="卢森堡" />
+        <item key="IRL" value="爱尔兰" />
+        <item key="ESP" value="西班牙" />
+        <item key="PRT" value="葡萄牙" />
+        <item key="AUT" value="奥地利" />
+        <item key="FIN" value="芬兰" />
+        <item key="LTU" value="立陶宛" />
+        <item key="LVA" value="拉脱维亚" />
+        <item key="EST" value="爱沙尼亚" />
+        <item key="SVK" value="斯洛伐克" />
+        <item key="SVN" value="斯洛文尼亚" />
+        <item key="GRC" value="希腊" />
+        <item key="MLT" value="马耳他" />
+        <item key="CYP" value="塞浦路斯" />
+        <item key="GBR" value="英国" />
+        <item key="HKG" value="香港" />
+        <item key="JPN" value="日本" />
+        <item key="KOR" value="韩国" />
+        <item key="MAC" value="澳门" />
+        <item key="USA" value="美国" />
+        <item key="THA" value="泰国" />
+        <item key="CTN" value="中国台湾" />
+    </code>
+</codes>

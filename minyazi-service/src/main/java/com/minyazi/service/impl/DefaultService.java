@@ -12,7 +12,7 @@ import com.minyazi.service.PagingServiceAdapter;
  * 
  * @author minyazi
  */
-public class DefaultService extends PagingServiceAdapter {
+public class DefaultService<T> extends PagingServiceAdapter<T> {
     private CommonService commonService;
     
     public DefaultService() {}

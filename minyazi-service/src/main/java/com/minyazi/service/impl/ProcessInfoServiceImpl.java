@@ -18,7 +18,7 @@ import com.minyazi.service.domain.PagingDTO;
  * @author minyazi
  */
 @Service("processInfoService")
-public class ProcessInfoServiceImpl extends DefaultService implements ProcessInfoService {
+public class ProcessInfoServiceImpl extends DefaultService<ProcessInfoDO> implements ProcessInfoService {
     private ProcessInfoDao processInfoDao;
     
     public ProcessInfoServiceImpl() {}
@@ -34,7 +34,6 @@ public class ProcessInfoServiceImpl extends DefaultService implements ProcessInf
     }
     
     @Override
-    @SuppressWarnings("unchecked")
     public PagingDTO<ProcessInfoDO> listToPaging(int page, int pageSize) throws ServiceException {
         try {
             int totalNumber = getProcessInfoDao().getTotalNumber();
@@ -49,7 +48,6 @@ public class ProcessInfoServiceImpl extends DefaultService implements ProcessInf
     }
     
     @Override
-    @SuppressWarnings("unchecked")
     public PagingDTO<ProcessInfoDO> listToPaging(int page, int pageSize, String queryCondition) throws ServiceException {
         try {
             int totalNumber = getProcessInfoDao().getTotalNumber(queryCondition);

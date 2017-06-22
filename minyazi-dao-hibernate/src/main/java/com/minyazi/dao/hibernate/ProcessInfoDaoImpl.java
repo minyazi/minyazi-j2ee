@@ -18,7 +18,7 @@ import com.minyazi.dao.domain.ProcessInfoDO;
  * @author minyazi
  */
 @Repository("processInfoDao")
-public class ProcessInfoDaoImpl extends DefaultDao implements ProcessInfoDao {
+public class ProcessInfoDaoImpl extends DefaultDao<ProcessInfoDO> implements ProcessInfoDao {
     public ProcessInfoDaoImpl() {}
     
     @Override

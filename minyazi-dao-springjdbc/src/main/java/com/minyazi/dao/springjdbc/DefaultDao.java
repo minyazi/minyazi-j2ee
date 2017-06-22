@@ -12,7 +12,7 @@ import com.minyazi.dao.PagingDaoAdapter;
  * 
  * @author minyazi
  */
-public class DefaultDao extends PagingDaoAdapter {
+public class DefaultDao<T> extends PagingDaoAdapter<T> {
     private JdbcTemplate jdbcTemplate;
     private CommonDaoImpl commonDao;
     

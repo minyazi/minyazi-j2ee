@@ -7,7 +7,7 @@ import java.util.List;
  * 
  * @author minyazi
  */
-public abstract class PagingDaoAdapter implements PagingDao {
+public abstract class PagingDaoAdapter<T> implements PagingDao<T> {
     public PagingDaoAdapter() {}
     
     @Override
@@ -16,7 +16,7 @@ public abstract class PagingDaoAdapter implements PagingDao {
     }
     
     @Override
-    public <T> List<T> selectToPaging(int offset, int pageSize) throws DaoException {
+    public List<T> selectToPaging(int offset, int pageSize) throws DaoException {
         return null;
     }
     
@@ -26,7 +26,7 @@ public abstract class PagingDaoAdapter implements PagingDao {
     }
     
     @Override
-    public <T> List<T> selectToPaging(int offset, int pageSize, String queryCondition) throws DaoException {
+    public List<T> selectToPaging(int offset, int pageSize, String queryCondition) throws DaoException {
         return null;
     }
 }

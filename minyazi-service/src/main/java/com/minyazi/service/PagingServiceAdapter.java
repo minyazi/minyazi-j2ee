@@ -7,16 +7,16 @@ import com.minyazi.service.domain.PagingDTO;
  * 
  * @author minyazi
  */
-public abstract class PagingServiceAdapter implements PagingService {
+public abstract class PagingServiceAdapter<T> implements PagingService<T> {
     public PagingServiceAdapter() {}
     
     @Override
-    public <T> PagingDTO<T> listToPaging(int page, int pageSize) throws ServiceException {
+    public PagingDTO<T> listToPaging(int page, int pageSize) throws ServiceException {
         return null;
     }
     
     @Override
-    public <T> PagingDTO<T> listToPaging(int page, int pageSize, String queryCondition) throws ServiceException {
+    public PagingDTO<T> listToPaging(int page, int pageSize, String queryCondition) throws ServiceException {
         return null;
     }
 }

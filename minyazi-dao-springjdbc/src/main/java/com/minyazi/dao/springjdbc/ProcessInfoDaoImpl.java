@@ -14,7 +14,7 @@ import com.minyazi.dao.domain.ProcessInfoDO;
  * @author minyazi
  */
 @Repository("processInfoDao")
-public class ProcessInfoDaoImpl extends DefaultDao implements ProcessInfoDao {
+public class ProcessInfoDaoImpl extends DefaultDao<ProcessInfoDO> implements ProcessInfoDao {
     public ProcessInfoDaoImpl() {}
     
     @Override
@@ -96,7 +96,6 @@ public class ProcessInfoDaoImpl extends DefaultDao implements ProcessInfoDao {
     }
     
     @Override
-    @SuppressWarnings("unchecked")
     public List<ProcessInfoDO> selectToPaging(int offset, int pageSize) throws DaoException {
         StringBuilder sql = new StringBuilder(500);
         sql.append("select * from ProcessInfo order by processCode");
@@ -111,7 +110,6 @@ public class ProcessInfoDaoImpl extends DefaultDao implements ProcessInfoDao {
     }
     
     @Override
-    @SuppressWarnings("unchecked")
     public List<ProcessInfoDO> selectToPaging(int offset, int pageSize, String queryCondition) throws DaoException {
         StringBuilder sql = new StringBuilder(500);
         sql.append("select * from ProcessInfo where 1=1 ").append(queryCondition).append(" order by processCode");

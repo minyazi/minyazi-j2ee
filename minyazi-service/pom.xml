@@ -83,18 +83,24 @@
     
     <build>
         <plugins>
+            <!-- 配置打包时将依赖的jar包拷贝到指定目录 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
             </plugin>
+            -->
+            <!-- 配置打包时生成源码的jar包 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
             </plugin>
+            -->
+            <!-- 配置打包时生成javadoc文档的jar包 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
             </plugin>
+            -->
         </plugins>
     </build>
 </project>

@@ -11,11 +11,11 @@
     <modules>
         <module>../minyazi-core</module>
         <module>../minyazi-dao</module>
-        <module>../minyazi-dao-xml</module>
+        <!--<module>../minyazi-dao-xml</module>-->
         <!--<module>../minyazi-dao-jpa</module>-->
         <module>../minyazi-dao-springjdbc</module>
-        <module>../minyazi-dao-hibernate</module>
-        <module>../minyazi-dao-mybatis</module>
+        <!--<module>../minyazi-dao-hibernate</module>-->
+        <!--<module>../minyazi-dao-mybatis</module>-->
         <module>../minyazi-service</module>
         <module>../minyazi-web</module>
     </modules>

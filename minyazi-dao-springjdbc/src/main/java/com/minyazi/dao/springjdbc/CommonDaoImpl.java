@@ -247,7 +247,7 @@ public class CommonDaoImpl implements CommonDao {
      */
     public int insert(String tableName, Map<String, String> data) {
         StringBuilder sql = new StringBuilder(500);
-        sql.append("select * from ").append(tableName);
+        sql.append("select * from ").append(tableName).append(" limit 0");
         SqlRowSet srs = getJdbcTemplate().queryForRowSet(sql.toString());
         SqlRowSetMetaData srsmd = srs.getMetaData();
         int columnCount = srsmd.getColumnCount();

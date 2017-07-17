@@ -33,7 +33,8 @@ public class CommonDaoTest {
             FD_B     varchar(20)       not null,
             FD_C     decimal(16,2)     not null,
             FD_D     text              not null,
-            FD_E     int               not null
+            FD_E     int               not null,
+            FD_F     decimal(16,2)         null
         );
         */
         JdbcTemplate jdbcTemplate = commonDao.getJdbcTemplate();
@@ -71,6 +72,7 @@ public class CommonDaoTest {
         data.put("FD_C", "1.00");
         data.put("FD_D", "D");
         data.put("FD_E", "1");
+        data.put("FD_F", "");
         commonDao.insert("data", data);
     }
 }

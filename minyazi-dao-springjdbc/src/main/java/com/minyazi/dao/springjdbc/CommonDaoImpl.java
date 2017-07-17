@@ -257,7 +257,13 @@ public class CommonDaoImpl implements CommonDao {
         Object[] params = new Object[columnCount];
         for (int i = 1; i <= columnCount; i++) {
             String columnName = srsmd.getColumnName(i);
-            String columnValue = StringUtil.formatNullString(data.get(columnName));
+            String columnClassName = srsmd.getColumnClassName(i);
+            String columnValue = data.get(columnName);
+            if ("java.lang.String".equals(columnClassName)) {
+                columnValue = StringUtil.formatNullString(columnValue);
+            } else {
+                columnValue = StringUtil.formatNullAmount(columnValue);
+            }
             
             if (i != columnCount) {
                 fields.append(columnName).append(",");

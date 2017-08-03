@@ -7,7 +7,17 @@
     <constant name="struts.enable.DynamicMethodInvocation" value="true" />
     <constant name="struts.multipart.maxSize" value="1073741824" /><!-- 1G -->
     
-    <package name="default" namespace="" extends="struts-default">
+    <!-- 默认命名空间 -->
+    <package name="default" extends="struts-default">
+        <!-- 默认Action -->
+        <default-action-ref name="login" />
+        <action name="login">
+            <result name="success" type="redirect">/login.jsp</result>
+        </action>
+    </package>
+    
+    <!-- 根命名空间 -->
+    <package name="root" namespace="/" extends="struts-default">
         <action name="*">
             <result name="success" type="redirect">/login.jsp</result>
         </action>
@@ -22,7 +32,7 @@
         </action>
     </package>
     
-    <package name="root" namespace="/root" extends="struts-default">
+    <package name="base" namespace="/base" extends="struts-default">
         <interceptors>
             <!-- 异常记录拦截器 -->
             <interceptor name="exceptionInterceptor" class="com.minyazi.web.interceptor.ExceptionInterceptor" />
@@ -46,7 +56,7 @@
         </global-exception-mappings>
     </package>
     
-    <package name="index" namespace="/index" extends="root">
+    <package name="index" namespace="/index" extends="base">
         <action name="input" class="com.minyazi.web.action.LoginAction" method="input">
             <result name="success">/jsp/login.jsp</result>
         </action>
@@ -62,7 +72,7 @@
         </action>
     </package>
     
-    <package name="secure" namespace="/secure" extends="root">
+    <package name="secure" namespace="/secure" extends="base">
         <interceptors>
             <!-- 权限检查拦截器 -->
             <interceptor name="authorityInterceptor" class="com.minyazi.web.interceptor.AuthorityInterceptor" />

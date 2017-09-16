@@ -14,6 +14,35 @@
     <name>Minyazi J2EE Test</name>
     
     <dependencies>
+        <!-- minyazi-core -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>minyazi-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!-- poi -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.10.1</version>
+        </dependency>
+        <!-- commons-dbutils -->
+        <dependency>
+            <groupId>commons-dbutils</groupId>
+            <artifactId>commons-dbutils</artifactId>
+            <version>1.6</version>
+        </dependency>
+        <!-- c3p0 -->
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>c3p0</artifactId>
+        </dependency>
+        <!-- mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
         <!-- activemq-all -->
         <dependency>
             <groupId>org.apache.activemq</groupId>

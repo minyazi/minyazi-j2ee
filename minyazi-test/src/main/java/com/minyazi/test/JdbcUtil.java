@@ -1,4 +1,4 @@
-package com.minyazi.core.util;
+package com.minyazi.test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -14,6 +14,7 @@ import org.apache.commons.dbutils.handlers.MapListHandler;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.minyazi.core.PlatformException;
+import com.minyazi.core.util.LogUtil;
 
 /**
  * JDBC工具类

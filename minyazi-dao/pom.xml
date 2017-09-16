@@ -14,34 +14,11 @@
     <name>Minyazi J2EE DAO</name>
     
     <dependencies>
-        <!-- minyazi-core -->
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>minyazi-core</artifactId>
-            <version>${project.version}</version>
-        </dependency>
         <!-- hibernate-jpa-2.0-api -->
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.0-api</artifactId>
             <version>1.0.0.Final</version>
-        </dependency>
-        <!-- slf4j-log4j12 -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <!-- log4j -->
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <!-- junit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
         </dependency>
     </dependencies>
     

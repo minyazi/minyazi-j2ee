@@ -1,8 +1,7 @@
-package com.minyazi.core.util;
+package com.minyazi.test;
 
 import org.junit.Test;
 
-import com.minyazi.core.util.ExcelUtil;
 import com.minyazi.core.util.StringUtil;
 
 public class ExcelUtilTest {

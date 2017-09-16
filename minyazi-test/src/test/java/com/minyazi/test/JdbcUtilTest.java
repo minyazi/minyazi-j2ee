@@ -1,9 +1,9 @@
-package com.minyazi.core.util;
+package com.minyazi.test;
 
 import org.junit.Test;
 
-import com.minyazi.core.util.JdbcUtil;
 import com.minyazi.core.util.LogUtil;
+import com.minyazi.test.JdbcUtil;
 
 public class JdbcUtilTest {
     @Test

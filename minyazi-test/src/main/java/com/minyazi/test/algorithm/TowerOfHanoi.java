@@ -1,4 +1,4 @@
-package com.minyazi.core.algorithm;
+package com.minyazi.test.algorithm;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

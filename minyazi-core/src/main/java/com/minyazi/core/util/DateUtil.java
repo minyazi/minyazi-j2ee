@@ -243,6 +243,21 @@ public final class DateUtil {
     }
     
     /**
+     * 获取工作日（节假日顺延）
+     * <p>
+     * 说明：判断给定的日期是否是节假日，如果是节假日，则返回下一个工作日，否则返回当前日期。
+     * 
+     * @param date 日期
+     * @return 工作日（节假日顺延）
+     */
+    public String getWorkDay(String date) {
+        if (isHoliday(date)) {
+            date = getNextWorkday(date);
+        }
+        return date;
+    }
+    
+    /**
      * 获取给定的日期的星期
      * 
      * @param date 日期
@@ -298,6 +313,44 @@ public final class DateUtil {
             c.setTime(sdf.parse(birthday));
             sdf = getSimpleDateFormat("yyyy");
             return Integer.parseInt(sdf.format(new Date())) - Integer.parseInt(sdf.format(c.getTime()));
+        } catch (ParseException e) {
+            PlatformException pe = new PlatformException("日期解析出错：" + e.getMessage(), e);
+            LogUtil.exception(pe);
+            throw pe;
+        }
+    }
+    
+    /**
+     * 获取两个日期的间隔天数
+     * 
+     * @param date1 日期1
+     * @param date2 日期2
+     * @return 日期1和日期2的间隔天数
+     */
+    public static int getIntervalDays(String date1, String date2) {
+        LogUtil.debug("日期1：{}，日期2：{}", date1, date2);
+        try {
+            SimpleDateFormat sdf1 = getSimpleDateFormatByDate(date1);
+            Date d1 = sdf1.parse(date1);
+            
+            SimpleDateFormat sdf2 = getSimpleDateFormatByDate(date2);
+            Date d2 = sdf2.parse(date2);
+            
+            if (d1.compareTo(d2) > 0) {
+                Date temp = d2;
+                d2 = d1;
+                d1 = temp;
+            }
+            
+            Calendar c = Calendar.getInstance();
+            
+            c.setTime(d1);
+            long time1 = c.getTimeInMillis();
+            
+            c.setTime(d2);
+            long time2 = c.getTimeInMillis();
+            
+            return (int) ((time2 - time1) / (1000 * 60 * 60 * 24));
         } catch (ParseException e) {
             PlatformException pe = new PlatformException("日期解析出错：" + e.getMessage(), e);
             LogUtil.exception(pe);

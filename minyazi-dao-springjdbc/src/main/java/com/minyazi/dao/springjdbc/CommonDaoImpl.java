@@ -90,7 +90,7 @@ public class CommonDaoImpl implements CommonDao {
                 while (rs.next()) {
                     Map<String, String> _result = new HashMap<String, String>();
                     for (int i = 1; i <= rsmd.getColumnCount(); i++) {
-                        String columnName = rsmd.getColumnName(i);
+                        String columnName = rsmd.getColumnLabel(i);
                         _result.put(columnName, rs.getString(columnName));
                     }
                     result.add(_result);
@@ -120,7 +120,7 @@ public class CommonDaoImpl implements CommonDao {
                 while (rs.next()) {
                     Map<String, String> _result = new HashMap<String, String>();
                     for (int i = 1; i <= rsmd.getColumnCount(); i++) {
-                        String columnName = rsmd.getColumnName(i);
+                        String columnName = rsmd.getColumnLabel(i);
                         _result.put(columnName, rs.getString(columnName));
                     }
                     result.add(_result);

@@ -25,4 +25,14 @@ public class DateUtilTest {
     public void testGetAge() {
         LogUtil.info(DateUtil.getAge("1990-01-01") + "");
     }
+    
+    @Test
+    public void testGetIntervalDays() {
+        LogUtil.info("间隔天数：" + DateUtil.getIntervalDays("2017-01-01", "2016-11-30"));
+        LogUtil.info("间隔天数：" + DateUtil.getIntervalDays("2017-01-01", "2016-12-31"));
+        LogUtil.info("间隔天数：" + DateUtil.getIntervalDays("2017-01-01", "2017-01-01"));
+        LogUtil.info("间隔天数：" + DateUtil.getIntervalDays("2017-01-01", "2017-01-02"));
+        LogUtil.info("间隔天数：" + DateUtil.getIntervalDays("2017-01-01", "2017-02-01"));
+        LogUtil.info("间隔天数：" + DateUtil.getIntervalDays("2017-01-01", "2017-03-01"));
+    }
 }

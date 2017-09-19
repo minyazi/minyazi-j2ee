@@ -1,5 +1,6 @@
 package com.minyazi.test.jms.p2p;
 
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.jms.Connection;
@@ -99,10 +100,12 @@ public class MessageSender {
             while (true) {
                 try {
                     String message = Thread.currentThread().getName() + " -> 发送消息：Hello World，发送消息计数：" + counter.getAndIncrement();
-                    System.out.println(message);
                     messageSender.sendMessage(message);
+                    System.out.println(message);
                     
-                    Thread.sleep(1000);
+                    int sleepTime = new Random().nextInt(10);
+                    System.out.println(Thread.currentThread().getName() + " -> 休眠时间：" + sleepTime + "s");
+                    Thread.sleep(sleepTime * 1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

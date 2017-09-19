@@ -23,14 +23,17 @@ public class MessageReceiver {
     private static final String PASSWORD = ActiveMQConnection.DEFAULT_PASSWORD; // ActiveMQ的默认密码
     private static final String BROKERURL = ActiveMQConnection.DEFAULT_BROKER_URL; // ActiveMQ的默认连接地址
     
-    private AtomicInteger counter = new AtomicInteger(0); // 计数器
+    private AtomicInteger counter; // 计数器
     private ConnectionFactory connectionFactory; // 连接工厂
     private Connection connection; // 连接
     private Session session; // 会话
+    private Queue queue; // 消息队列
     private ThreadLocal<MessageConsumer> threadLocal = new ThreadLocal<MessageConsumer>();
     
-    public MessageReceiver() {
+    public MessageReceiver(String queueName) {
         try {
+            // 实例化计数器
+            counter = new AtomicInteger(1);
             // 实例化连接工厂
             connectionFactory = new ActiveMQConnectionFactory(USERNAME, PASSWORD, BROKERURL);
             // 通过连接工厂获取连接
@@ -39,17 +42,16 @@ public class MessageReceiver {
             connection.start();
             // 创建会话
             session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            // 创建消息队列
+            queue = session.createQueue(queueName);
         } catch (JMSException e) {
             e.printStackTrace();
         }
     }
     
-    public void receiveMessage(String queueName) {
-        Queue queue = null; // 消息队列
-        MessageConsumer messageConsumer = null; // 消息消费者
+    public void receiveMessage() {
         try {
-            // 创建消息队列
-            queue = session.createQueue("MESG_QUEUE");
+            MessageConsumer messageConsumer = null; // 消息消费者
             if (threadLocal.get() != null) {
                 messageConsumer = threadLocal.get();
             } else {
@@ -58,16 +60,13 @@ public class MessageReceiver {
                 threadLocal.set(messageConsumer);
             }
             
-            while (true) {
-                Thread.sleep(1000);
-                // 接收消息
-                TextMessage mesg = (TextMessage) messageConsumer.receive();
-                if (mesg != null) {
-                    String message = Thread.currentThread().getName() + " -> 接收消息：" + mesg.getText() + "，计数：" + counter.getAndIncrement();
-                    System.out.println(message);
-                } else {
-                    break;
-                }
+            // 接收消息
+            TextMessage mesg = (TextMessage) messageConsumer.receive(1000);
+            if (mesg != null) {
+                String message = Thread.currentThread().getName() + " -> 接收消息：[" + mesg.getText() + "]，接收消息计数：" + counter.getAndIncrement();
+                System.out.println(message);
+            } else {
+                System.out.println(Thread.currentThread().getName());
             }
             
             /*
@@ -76,7 +75,7 @@ public class MessageReceiver {
                 @Override
                 public void onMessage(Message mesg) {
                     try {
-                        String message = Thread.currentThread().getName() + " -> 接收消息：" + ((TextMessage) mesg).getText() + "，计数：" + counter.getAndIncrement();
+                        String message = Thread.currentThread().getName() + " -> 接收消息：[" + ((TextMessage) mesg).getText() + "]，接收消息计数：" + counter.getAndIncrement();
                         System.out.println(message);
                     } catch (JMSException e) {
                         e.printStackTrace();
@@ -85,8 +84,6 @@ public class MessageReceiver {
             });
             */
         } catch (JMSException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -118,8 +115,9 @@ public class MessageReceiver {
         public void run() {
             while (true) {
                 try {
-                    messageReceiver.receiveMessage("MESG_QUEUE");
-                    Thread.sleep(10000);
+                    messageReceiver.receiveMessage();
+                    
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -128,11 +126,11 @@ public class MessageReceiver {
     }
     
     public static void main(String[] args) {
-        MessageReceiver messageReceiver = new MessageReceiver();
-        new Thread(messageReceiver.new MessageReceiverThread(messageReceiver)).start();
-        new Thread(messageReceiver.new MessageReceiverThread(messageReceiver)).start();
-        new Thread(messageReceiver.new MessageReceiverThread(messageReceiver)).start();
-        new Thread(messageReceiver.new MessageReceiverThread(messageReceiver)).start();
-        new Thread(messageReceiver.new MessageReceiverThread(messageReceiver)).start();
+        MessageReceiver messageReceiver = new MessageReceiver("MESG_QUEUE");
+        new Thread(messageReceiver.new MessageReceiverThread(messageReceiver), "消息接收者1").start();
+        new Thread(messageReceiver.new MessageReceiverThread(messageReceiver), "消息接收者2").start();
+        new Thread(messageReceiver.new MessageReceiverThread(messageReceiver), "消息接收者3").start();
+        new Thread(messageReceiver.new MessageReceiverThread(messageReceiver), "消息接收者4").start();
+        new Thread(messageReceiver.new MessageReceiverThread(messageReceiver), "消息接收者5").start();
     }
 }

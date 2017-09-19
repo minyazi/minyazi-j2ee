@@ -23,14 +23,17 @@ public class MessageSender {
     private static final String PASSWORD = ActiveMQConnection.DEFAULT_PASSWORD; // ActiveMQ的默认密码
     private static final String BROKERURL = ActiveMQConnection.DEFAULT_BROKER_URL; // ActiveMQ的默认连接地址
     
-    private AtomicInteger counter = new AtomicInteger(0); // 计数器
+    private AtomicInteger counter; // 计数器
     private ConnectionFactory connectionFactory; // 连接工厂
     private Connection connection; // 连接
     private Session session; // 会话
+    private Queue queue; // 消息队列
     private ThreadLocal<MessageProducer> threadLocal = new ThreadLocal<MessageProducer>();
     
-    public MessageSender() {
+    public MessageSender(String queueName) {
         try {
+            // 实例化计数器
+            counter = new AtomicInteger(1);
             // 实例化连接工厂
             connectionFactory = new ActiveMQConnectionFactory(USERNAME, PASSWORD, BROKERURL);
             // 通过连接工厂获取连接
@@ -39,17 +42,16 @@ public class MessageSender {
             connection.start();
             // 创建会话
             session = connection.createSession(true, Session.SESSION_TRANSACTED);
+            // 创建消息队列
+            queue = session.createQueue(queueName);
         } catch (JMSException e) {
             e.printStackTrace();
         }
     }
     
-    public void sendMessage(String queueName) {
-        Queue queue = null; // 消息队列
-        MessageProducer messageProducer = null; // 消息生产者
+    public void sendMessage(String message) {
         try {
-            // 创建消息队列
-            queue = session.createQueue(queueName);
+            MessageProducer messageProducer = null; // 消息生产者
             if (threadLocal.get() != null) {
                 messageProducer = threadLocal.get();
             } else {
@@ -58,20 +60,13 @@ public class MessageSender {
                 threadLocal.set(messageProducer);
             }
             
-            while (true) {
-                Thread.sleep(1000);
-                // 创建消息
-                String message = Thread.currentThread().getName() + " -> 发送消息：Hello World，计数：" + counter.getAndIncrement();
-                System.out.println(message);
-                TextMessage mesg = session.createTextMessage(message);
-                // 发送消息
-                messageProducer.send(mesg);
-                // 提交事务
-                session.commit();
-            }
+            // 创建消息
+            TextMessage mesg = session.createTextMessage(message);
+            // 发送消息
+            messageProducer.send(mesg);
+            // 提交事务
+            session.commit();
         } catch (JMSException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -103,8 +98,11 @@ public class MessageSender {
         public void run() {
             while (true) {
                 try {
-                    messageSender.sendMessage("MESG_QUEUE");
-                    Thread.sleep(10000);
+                    String message = Thread.currentThread().getName() + " -> 发送消息：Hello World，发送消息计数：" + counter.getAndIncrement();
+                    System.out.println(message);
+                    messageSender.sendMessage(message);
+                    
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -113,11 +111,11 @@ public class MessageSender {
     }
     
     public static void main(String[] args) {
-        MessageSender messageSender = new MessageSender();
-        new Thread(messageSender.new MessageSenderThread(messageSender)).start();
-        new Thread(messageSender.new MessageSenderThread(messageSender)).start();
-        new Thread(messageSender.new MessageSenderThread(messageSender)).start();
-        new Thread(messageSender.new MessageSenderThread(messageSender)).start();
-        new Thread(messageSender.new MessageSenderThread(messageSender)).start();
+        MessageSender messageSender = new MessageSender("MESG_QUEUE");
+        new Thread(messageSender.new MessageSenderThread(messageSender), "消息发送者1").start();
+        new Thread(messageSender.new MessageSenderThread(messageSender), "消息发送者2").start();
+        new Thread(messageSender.new MessageSenderThread(messageSender), "消息发送者3").start();
+        new Thread(messageSender.new MessageSenderThread(messageSender), "消息发送者4").start();
+        new Thread(messageSender.new MessageSenderThread(messageSender), "消息发送者5").start();
     }
 }

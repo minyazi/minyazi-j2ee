@@ -29,7 +29,7 @@ public class MessageReceiver {
     private Connection connection; // 连接
     private Session session; // 会话
     private Queue queue; // 消息队列
-    private ThreadLocal<MessageConsumer> threadLocal = new ThreadLocal<MessageConsumer>();
+//    private ThreadLocal<MessageConsumer> threadLocal = new ThreadLocal<MessageConsumer>();
     
     public MessageReceiver(String queueName) {
         try {
@@ -51,8 +51,11 @@ public class MessageReceiver {
     }
     
     public void receiveMessage() {
+        MessageConsumer messageConsumer = null; // 消息消费者
         try {
-            MessageConsumer messageConsumer = null; // 消息消费者
+            // 创建消息消费者
+            messageConsumer = session.createConsumer(queue);
+            /*
             if (threadLocal.get() != null) {
                 messageConsumer = threadLocal.get();
             } else {
@@ -60,6 +63,7 @@ public class MessageReceiver {
                 messageConsumer = session.createConsumer(queue);
                 threadLocal.set(messageConsumer);
             }
+            */
             
             // 接收消息
             TextMessage mesg = (TextMessage) messageConsumer.receive(10000);
@@ -86,14 +90,24 @@ public class MessageReceiver {
             */
         } catch (JMSException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (messageConsumer != null) {
+                    messageConsumer.close();
+                }
+            } catch (JMSException e) {
+                e.printStackTrace();
+            }
         }
     }
     
     public void close() {
         try {
+            /*
             if (threadLocal.get() != null) {
                 threadLocal.get().close();
             }
+            */
             if (session != null) {
                 session.close();
             }

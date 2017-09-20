@@ -29,7 +29,7 @@ public class MessageSender {
     private Connection connection; // 连接
     private Session session; // 会话
     private Queue queue; // 消息队列
-    private ThreadLocal<MessageProducer> threadLocal = new ThreadLocal<MessageProducer>();
+//    private ThreadLocal<MessageProducer> threadLocal = new ThreadLocal<MessageProducer>();
     
     public MessageSender(String queueName) {
         try {
@@ -51,8 +51,11 @@ public class MessageSender {
     }
     
     public void sendMessage(String message) {
+        MessageProducer messageProducer = null; // 消息生产者
         try {
-            MessageProducer messageProducer = null; // 消息生产者
+            // 创建消息生产者
+            messageProducer = session.createProducer(queue);
+            /*
             if (threadLocal.get() != null) {
                 messageProducer = threadLocal.get();
             } else {
@@ -60,6 +63,7 @@ public class MessageSender {
                 messageProducer = session.createProducer(queue);
                 threadLocal.set(messageProducer);
             }
+            */
             
             // 创建消息
             TextMessage mesg = session.createTextMessage(message);
@@ -69,14 +73,24 @@ public class MessageSender {
             session.commit();
         } catch (JMSException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (messageProducer != null) {
+                    messageProducer.close();
+                }
+            } catch (JMSException e) {
+                e.printStackTrace();
+            }
         }
     }
     
     public void close() {
         try {
+            /*
             if (threadLocal.get() != null) {
                 threadLocal.get().close();
             }
+            */
             if (session != null) {
                 session.close();
             }

@@ -13,6 +13,10 @@
     <artifactId>minyazi-test</artifactId>
     <name>Minyazi J2EE Test</name>
     
+    <properties>
+        <cxf.version>3.0.15</cxf.version>
+    </properties>
+    
     <dependencies>
         <!-- minyazi-core -->
         <dependency>
@@ -48,6 +52,32 @@
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-all</artifactId>
             <version>5.10.2</version>
+        </dependency>
+        <!-- apache-cxf 
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>apache-cxf</artifactId>
+            <version>${cxf.version}</version>
+            <type>pom</type>
+        </dependency>
+        -->
+        <!-- cxf-rt-frontend-jaxws -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+        <!-- cxf-rt-transports-http -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+        <!-- cxf-rt-transports-http-jetty -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http-jetty</artifactId>
+            <version>${cxf.version}</version>
         </dependency>
         <!-- slf4j-log4j12 -->
         <dependency>

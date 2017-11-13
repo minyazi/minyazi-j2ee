@@ -12,18 +12,19 @@
     </listener>
     -->
     
-    <!-- 应用监听器（初始化代码列表） -->
+    <!-- 应用监听器（初始化代码列表） 
     <listener>
         <listener-class>com.minyazi.web.listener.CodeInitApplicationListener</listener-class>
     </listener>
+    -->
     
     <!-- Struts2核心过滤器 -->
     <filter>
-        <filter-name>struts2</filter-name>
-        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+        <filter-name>Struts2</filter-name>
+        <filter-class>com.minyazi.web.filter.ExtendStruts2Filter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>struts2</filter-name>
+        <filter-name>Struts2</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     
@@ -36,13 +37,27 @@
         <param-value>
             <!-- 方式一 -->
             classpath:/minyazi-dao-springjdbc.xml,
-            classpath:/minyazi-service-springjdbc.xml
+            classpath:/minyazi-service-springjdbc.xml,
+            classpath:/webservice-beans.xml
             <!-- 方式二  
             classpath*:minyazi-dao-springjdbc.xml,
             classpath*:minyazi-service-springjdbc.xml
             -->
         </param-value>
     </context-param>
+    
+    <listener>
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    </listener>
+    
+    <servlet>
+        <servlet-name>CXF</servlet-name>
+        <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CXF</servlet-name>
+        <url-pattern>/ws/*</url-pattern>
+    </servlet-mapping>
     
     <!-- 设置会话失效时间为60分钟 -->
     <session-config>

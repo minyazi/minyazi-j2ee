@@ -1,6 +1,4 @@
-package com.minyazi.service.webservice.impl;
-
-import com.minyazi.service.webservice.HelloWorldWebService;
+package com.minyazi.test.webservice;
 
 public class HelloWorldWebServiceImpl implements HelloWorldWebService {
     @Override

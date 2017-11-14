@@ -1,4 +1,4 @@
-package com.minyazi.service.webservice;
+package com.minyazi.test.webservice;
 
 import javax.jws.WebService;
 

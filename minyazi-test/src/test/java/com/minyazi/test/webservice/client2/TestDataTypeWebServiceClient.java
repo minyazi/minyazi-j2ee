@@ -13,21 +13,22 @@ public class TestDataTypeWebServiceClient {
         DataTypeWebService service = factory.getDataTypeWebServiceImplPort();
         
         User user = new User();
-        user.setUserId(1);
+        user.setId("1");
         
         LogUtil.info(service.isExist(user) + "");
         
-        LogUtil.info(service.getUserName(user.getUserId()));
+        LogUtil.info(service.getUserName(user.getId()));
         
-        user = service.getUserById(user.getUserId());
-        LogUtil.info("{} : {}", user.getUserId(), user.getUserName());
+        user = service.getUserById(user.getId());
+        LogUtil.info("{} # {}", user.getId(), user.getName());
         
-        List<User> users = service.getUsersByName(user.getUserName());
+        List<User> users = service.getUsersByName(user.getName());
         for (User _user : users) {
-            LogUtil.info("{} : {}", _user.getUserId(), _user.getUserName());
+            LogUtil.info("{} ## {}", _user.getId(), _user.getName());
         }
         
-        HashMap _users = service.getUsers();
-        LogUtil.info(_users.toString());
+        for (MapEntry _user : service.getUsers().getEntries()) {
+            LogUtil.info("{} ### {}", _user.getValue().getId(), _user.getValue().getName());
+        }
     }
 }

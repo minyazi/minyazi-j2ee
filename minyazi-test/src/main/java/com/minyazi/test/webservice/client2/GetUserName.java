@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="arg0" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/&gt;
+ *         &lt;element name="arg0" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -31,17 +31,17 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class GetUserName {
 
-    protected Integer arg0;
+    protected String arg0;
 
     /**
      * 获取arg0属性的值。
      * 
      * @return
      *     possible object is
-     *     {@link Integer }
+     *     {@link String }
      *     
      */
-    public Integer getArg0() {
+    public String getArg0() {
         return arg0;
     }
 
@@ -50,10 +50,10 @@ public class GetUserName {
      * 
      * @param value
      *     allowed object is
-     *     {@link Integer }
+     *     {@link String }
      *     
      */
-    public void setArg0(Integer value) {
+    public void setArg0(String value) {
         this.arg0 = value;
     }
 

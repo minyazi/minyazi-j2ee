@@ -131,11 +131,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link HashMap }
+     * Create an instance of {@link MapConvertor }
      * 
      */
-    public HashMap createHashMap() {
-        return new HashMap();
+    public MapConvertor createMapConvertor() {
+        return new MapConvertor();
+    }
+
+    /**
+     * Create an instance of {@link MapEntry }
+     * 
+     */
+    public MapEntry createMapEntry() {
+        return new MapEntry();
     }
 
     /**

@@ -1,13 +1,15 @@
 package com.minyazi.test.webservice;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class DataTypeWebServiceImpl implements DataTypeWebService {
     @Override
     public boolean isExist(User user) {
-        if (user != null && user.getUserId() != null) {
-            if (user.getUserId() == 1 || user.getUserId() == 2) {
+        if (user != null && user.getId() != null) {
+            if (user.getId().equals("1") || user.equals("2")) {
                 return true;
             }
         }
@@ -16,11 +18,11 @@ public class DataTypeWebServiceImpl implements DataTypeWebService {
     }
     
     @Override
-    public String getUserName(Integer userId) {
-        if (userId != null) {
-            if (userId == 1) {
+    public String getUserName(String id) {
+        if (id != null) {
+            if (id.equals("1")) {
                 return "张三";
-            } else if (userId == 2) {
+            } else if (id.equals("2")) {
                 return "李四";
             }
         }
@@ -29,12 +31,12 @@ public class DataTypeWebServiceImpl implements DataTypeWebService {
     }
     
     @Override
-    public User getUserById(Integer userId) {
-        if (userId != null) {
-            if (userId == 1) {
-                return new User(1, "张三");
-            } else if (userId == 2) {
-                return new User(2, "李四");
+    public User getUserById(String id) {
+        if (id != null) {
+            if (id.equals("1")) {
+                return new User("1", "张三");
+            } else if (id.equals("2")) {
+                return new User("2", "李四");
             }
         }
         
@@ -42,23 +44,23 @@ public class DataTypeWebServiceImpl implements DataTypeWebService {
     }
     
     @Override
-    public ArrayList<User> getUsersByName(String userName) {
-        ArrayList<User> users = new ArrayList<User>();
-        if (userName != null) {
-            if (userName.equals("张三")) {
-                users.add(new User(1, "张三"));
-            } else if (userName.equals("李四")) {
-                users.add(new User(2, "李四"));
+    public List<User> getUsersByName(String name) {
+        List<User> users = new ArrayList<User>();
+        if (name != null) {
+            if (name.equals("张三")) {
+                users.add(new User("1", "张三"));
+            } else if (name.equals("李四")) {
+                users.add(new User("2", "李四"));
             }
         }
         return users;
     }
     
     @Override
-    public HashMap<Integer, User> getUsers() {
-        HashMap<Integer, User> users = new HashMap<Integer, User>();
-        users.put(1, new User(1, "张三"));
-        users.put(2, new User(2, "李四"));
+    public Map<String, User> getUsers() {
+        Map<String, User> users = new LinkedHashMap<String, User>();
+        users.put("1", new User("1", "张三"));
+        users.put("2", new User("2", "李四"));
         return users;
     }
 }

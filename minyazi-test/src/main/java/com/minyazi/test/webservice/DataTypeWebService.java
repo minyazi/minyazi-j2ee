@@ -1,19 +1,21 @@
 package com.minyazi.test.webservice;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.jws.WebService;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @WebService
 public interface DataTypeWebService {
     boolean isExist(User user);
     
-    String getUserName(Integer userId);
+    String getUserName(String id);
     
-    User getUserById(Integer userId);
+    User getUserById(String id);
     
-    ArrayList<User> getUsersByName(String userName);
+    List<User> getUsersByName(String name);
     
-    HashMap<Integer, User> getUsers();
+    @XmlJavaTypeAdapter(MapAdapter.class)
+    Map<String, User> getUsers();
 }

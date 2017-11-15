@@ -7,17 +7,17 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>user complex type的 Java 类。
+ * <p>mapEntry complex type的 Java 类。
  * 
  * <p>以下模式片段指定包含在此类中的预期内容。
  * 
  * <pre>
- * &lt;complexType name="user"&gt;
+ * &lt;complexType name="mapEntry"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="key" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="value" type="{http://webservice.test.minyazi.com/}user" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -27,61 +27,61 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "user", propOrder = {
-    "id",
-    "name"
+@XmlType(name = "mapEntry", propOrder = {
+    "key",
+    "value"
 })
-public class User {
+public class MapEntry {
 
-    protected String id;
-    protected String name;
+    protected String key;
+    protected User value;
 
     /**
-     * 获取id属性的值。
+     * 获取key属性的值。
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getId() {
-        return id;
+    public String getKey() {
+        return key;
     }
 
     /**
-     * 设置id属性的值。
+     * 设置key属性的值。
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setId(String value) {
-        this.id = value;
+    public void setKey(String value) {
+        this.key = value;
     }
 
     /**
-     * 获取name属性的值。
+     * 获取value属性的值。
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link User }
      *     
      */
-    public String getName() {
-        return name;
+    public User getValue() {
+        return value;
     }
 
     /**
-     * 设置name属性的值。
+     * 设置value属性的值。
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link User }
      *     
      */
-    public void setName(String value) {
-        this.name = value;
+    public void setValue(User value) {
+        this.value = value;
     }
 
 }

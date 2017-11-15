@@ -4,30 +4,30 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 public class User {
-    private Integer userId;
-    private String userName;
+    private String id;
+    private String name;
     
     public User() {}
     
-    public User(Integer userId, String userName) {
-        this.userId = userId;
-        this.userName = userName;
+    public User(String id, String name) {
+        this.id = id;
+        this.name = name;
     }
     
-    public Integer getUserId() {
-        return userId;
+    public String getId() {
+        return id;
     }
     
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setId(String id) {
+        this.id = id;
     }
     
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
     
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
     
     @Override

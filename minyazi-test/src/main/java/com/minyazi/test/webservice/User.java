@@ -1,5 +1,8 @@
 package com.minyazi.test.webservice;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
 public class User {
     private Integer userId;
     private String userName;
@@ -25,5 +28,10 @@ public class User {
     
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+    
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

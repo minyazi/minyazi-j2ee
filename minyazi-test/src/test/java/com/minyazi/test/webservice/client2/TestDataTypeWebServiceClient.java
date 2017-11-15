@@ -8,7 +8,7 @@ import com.minyazi.core.util.LogUtil;
 
 public class TestDataTypeWebServiceClient {
     @Test
-    public void testWebService() {
+    public void test() {
         DataTypeWebServiceImplService factory = new DataTypeWebServiceImplService();
         DataTypeWebService service = factory.getDataTypeWebServiceImplPort();
         

@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
     xmlns:jaxws="http://cxf.apache.org/jaxws"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
     <!--
     <import resource="classpath:META-INF/cxf/cxf.xml" />
     <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
     -->
-    <jaxws:endpoint id="helloWorldWS" implementor="com.minyazi.service.webservice.impl.HelloWorldWebServiceImpl" address="/helloWorldWS" />
+    
+    <!-- Beans -->
+    <context:component-scan base-package="com.minyazi.service.webservice.impl">
+        <context:include-filter type="regex" expression="com.minyazi.service.webservice.impl.*Impl" />
+    </context:component-scan>
+    
+    <jaxws:endpoint id="helloWorldWS" implementor="#helloWorldWebService" address="/helloWorldWS" />
 </beans>

@@ -5,6 +5,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.minyazi.core.util.LogUtil;
+
 public class DataTypeWebServiceImpl implements DataTypeWebService {
     @Override
     public boolean isExist(User user) {
@@ -62,5 +64,19 @@ public class DataTypeWebServiceImpl implements DataTypeWebService {
         users.put("1", new User("1", "张三"));
         users.put("2", new User("2", "李四"));
         return users;
+    }
+    
+    @Override
+    public void addUsers(List<User> users) {
+        for (User user : users) {
+            LogUtil.info("# {}", user.toString());
+        }
+    }
+    
+    @Override
+    public void addUsers(Map<String, User> users) {
+        for (User user : users.values()) {
+            LogUtil.info("## {}", user.toString());
+        }
     }
 }

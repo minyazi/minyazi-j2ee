@@ -24,6 +24,10 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _AddUsers_QNAME = new QName("http://webservice.test.minyazi.com/", "addUsers");
+    private final static QName _AddUsers2_QNAME = new QName("http://webservice.test.minyazi.com/", "addUsers2");
+    private final static QName _AddUsers2Response_QNAME = new QName("http://webservice.test.minyazi.com/", "addUsers2Response");
+    private final static QName _AddUsersResponse_QNAME = new QName("http://webservice.test.minyazi.com/", "addUsersResponse");
     private final static QName _GetUserById_QNAME = new QName("http://webservice.test.minyazi.com/", "getUserById");
     private final static QName _GetUserByIdResponse_QNAME = new QName("http://webservice.test.minyazi.com/", "getUserByIdResponse");
     private final static QName _GetUserName_QNAME = new QName("http://webservice.test.minyazi.com/", "getUserName");
@@ -40,6 +44,38 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link AddUsers }
+     * 
+     */
+    public AddUsers createAddUsers() {
+        return new AddUsers();
+    }
+
+    /**
+     * Create an instance of {@link AddUsers2 }
+     * 
+     */
+    public AddUsers2 createAddUsers2() {
+        return new AddUsers2();
+    }
+
+    /**
+     * Create an instance of {@link AddUsers2Response }
+     * 
+     */
+    public AddUsers2Response createAddUsers2Response() {
+        return new AddUsers2Response();
+    }
+
+    /**
+     * Create an instance of {@link AddUsersResponse }
+     * 
+     */
+    public AddUsersResponse createAddUsersResponse() {
+        return new AddUsersResponse();
     }
 
     /**
@@ -123,14 +159,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link User }
-     * 
-     */
-    public User createUser() {
-        return new User();
-    }
-
-    /**
      * Create an instance of {@link MapConvertor }
      * 
      */
@@ -144,6 +172,50 @@ public class ObjectFactory {
      */
     public MapEntry createMapEntry() {
         return new MapEntry();
+    }
+
+    /**
+     * Create an instance of {@link User }
+     * 
+     */
+    public User createUser() {
+        return new User();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddUsers }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://webservice.test.minyazi.com/", name = "addUsers")
+    public JAXBElement<AddUsers> createAddUsers(AddUsers value) {
+        return new JAXBElement<AddUsers>(_AddUsers_QNAME, AddUsers.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddUsers2 }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://webservice.test.minyazi.com/", name = "addUsers2")
+    public JAXBElement<AddUsers2> createAddUsers2(AddUsers2 value) {
+        return new JAXBElement<AddUsers2>(_AddUsers2_QNAME, AddUsers2 .class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddUsers2Response }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://webservice.test.minyazi.com/", name = "addUsers2Response")
+    public JAXBElement<AddUsers2Response> createAddUsers2Response(AddUsers2Response value) {
+        return new JAXBElement<AddUsers2Response>(_AddUsers2Response_QNAME, AddUsers2Response.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddUsersResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://webservice.test.minyazi.com/", name = "addUsersResponse")
+    public JAXBElement<AddUsersResponse> createAddUsersResponse(AddUsersResponse value) {
+        return new JAXBElement<AddUsersResponse>(_AddUsersResponse_QNAME, AddUsersResponse.class, null, value);
     }
 
     /**

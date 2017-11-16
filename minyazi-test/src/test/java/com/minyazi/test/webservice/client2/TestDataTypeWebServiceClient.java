@@ -1,5 +1,6 @@
 package com.minyazi.test.webservice.client2;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -30,5 +31,18 @@ public class TestDataTypeWebServiceClient {
         for (MapEntry _user : service.getUsers().getEntries()) {
             LogUtil.info("{} ### {}", _user.getValue().getId(), _user.getValue().getName());
         }
+        
+        users = new ArrayList<User>();
+        users.add(service.getUserById("1"));
+        users.add(service.getUserById("2"));
+        service.addUsers(users);
+        
+        MapConvertor _users = new MapConvertor();
+        List<MapEntry> entries = _users.getEntries();
+        MapEntry entry = new MapEntry();
+        entry.setKey("1");
+        entry.setValue(service.getUserById("1"));
+        entries.add(entry);
+        service.addUsers2(_users);
     }
 }

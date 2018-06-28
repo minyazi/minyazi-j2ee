@@ -101,4 +101,12 @@ public final class MathUtil {
             }
         }
     }
+    
+    public static void main(String[] args) {
+        for (int i = 200; i < 300; i++) {
+            if (MathUtil.isPrimeNumber(i)) {
+                System.out.println(i);
+            }
+        }
+    }
 }

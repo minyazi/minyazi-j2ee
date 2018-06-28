@@ -14,8 +14,11 @@ public class TestHelloWorldWebServiceServer {
         Endpoint.publish(address, new HelloWorldWebServiceImpl());
         /*
         JaxWsServerFactoryBean factory = new JaxWsServerFactoryBean();
-        factory.setServiceClass(CXFDemoImpl.class);
+        factory.getInInterceptors().add(new LoggingInInterceptor());
+        factory.getOutInterceptors().add(new LoggingOutInterceptor());
         factory.setAddress(address);
+        factory.setServiceClass(HelloWorldWebService.class);
+        factory.setServiceBean(new HelloWorldWebServiceImpl());
         factory.create();
         */
         LogUtil.info("发布成功");

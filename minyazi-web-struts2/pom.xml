@@ -10,9 +10,9 @@
         <relativePath>../minyazi-parent/pom.xml</relativePath>
     </parent>
     
-    <artifactId>minyazi-web</artifactId>
+    <artifactId>minyazi-web-struts2</artifactId>
     <packaging>war</packaging>
-    <name>Minyazi J2EE Web</name>
+    <name>Minyazi J2EE Web Struts2</name>
     
     <properties>
         <struts2.version>2.3.24.1</struts2.version>

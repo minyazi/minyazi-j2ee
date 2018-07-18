@@ -17,7 +17,7 @@
         <!--<module>../minyazi-dao-hibernate</module>-->
         <!--<module>../minyazi-dao-mybatis</module>-->
         <module>../minyazi-service</module>
-        <module>../minyazi-web</module>
+        <module>../minyazi-web-struts2</module>
         <module>../minyazi-test</module>
     </modules>
     

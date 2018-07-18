@@ -9,6 +9,7 @@
     <name>J2EE Parent</name>
     
     <modules>
+        <module>../j2ee-common</module>
         <module>../j2ee-core</module>
         <module>../j2ee-dao</module>
         <!--<module>../j2ee-dao-xml</module>-->
@@ -119,13 +120,6 @@
                 <artifactId>spring-oxm</artifactId>
                 <version>${springframework.version}</version>
             </dependency>
-            <!-- spring-test -->
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-test</artifactId>
-                <version>${springframework.version}</version>
-                <scope>test</scope>
-            </dependency>
             <!-- spring-tx -->
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -156,6 +150,13 @@
                 <artifactId>spring-websocket</artifactId>
                 <version>${springframework.version}</version>
             </dependency>
+            <!-- spring-test -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${springframework.version}</version>
+                <scope>test</scope>
+            </dependency>
             <!-- c3p0 -->
             <dependency>
                 <groupId>com.mchange</groupId>
@@ -167,6 +168,7 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>5.1.39</version>
+                <scope>runtime</scope>
             </dependency>
             <!-- slf4j-api -->
             <dependency>
@@ -179,12 +181,14 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
                 <version>1.7.25</version>
+                <scope>runtime</scope>
             </dependency>
             <!-- log4j -->
             <dependency>
                 <groupId>log4j</groupId>
                 <artifactId>log4j</artifactId>
                 <version>1.2.17</version>
+                <scope>runtime</scope>
             </dependency>
             <!-- junit -->
             <dependency>

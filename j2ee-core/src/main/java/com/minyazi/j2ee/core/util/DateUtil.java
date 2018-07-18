@@ -224,6 +224,25 @@ public final class DateUtil {
     }
     
     /**
+     * 获取给定的日期的上一个工作日（节假日顺延）
+     * 
+     * @param date 日期
+     * @return 指定日期的上一个工作日（节假日顺延）
+     */
+    public static String getPreviousWorkday(String date) {
+        String previousDay = getPreviousDay(date);
+        while (true) {
+            if (isHoliday(previousDay)) {
+                previousDay = getPreviousDay(previousDay);
+                continue;
+            } else {
+                break;
+            }
+        }
+        return previousDay;
+    }
+    
+    /**
      * 获取给定的日期的下一个工作日（节假日顺延）
      * 
      * @param date 日期
@@ -356,5 +375,9 @@ public final class DateUtil {
             LogUtil.exception(pe);
             throw pe;
         }
+    }
+    
+    public static void main(String[] args) {
+        System.out.println("间隔天数：" + DateUtil.getIntervalDays("2018-01-29", "2018-12-20"));
     }
 }

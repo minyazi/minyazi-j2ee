@@ -19,6 +19,12 @@
     </properties>
     
     <dependencies>
+        <!-- j2ee-common -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>j2ee-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <!-- j2ee-core -->
         <dependency>
             <groupId>${project.groupId}</groupId>

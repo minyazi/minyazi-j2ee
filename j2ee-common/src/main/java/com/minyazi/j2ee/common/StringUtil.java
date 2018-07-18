@@ -1,9 +1,4 @@
-package com.minyazi.j2ee.core.util;
-
-import java.util.Locale;
-import java.util.UUID;
-
-import com.minyazi.j2ee.core.PlatformException;
+package com.minyazi.j2ee.common;
 
 /**
  * 字符串工具类
@@ -14,70 +9,13 @@ public final class StringUtil {
     private StringUtil() {}
     
     /**
-     * 转换为小写字符串
-     * 
-     * @param value 要转换的字符串
-     * @return 转换为小写的字符串
-     */
-    public static String toLowerCase(String value) {
-        return value == null ? null : value.toLowerCase(Locale.ENGLISH);
-    }
-    
-    /**
-     * 转换为大写字符串
-     * 
-     * @param value 要转换的字符串
-     * @return 转换为大写的字符串
-     */
-    public static String toUpperCase(String value) {
-        return value == null ? null : value.toUpperCase(Locale.ENGLISH);
-    }
-    
-    /**
-     * 获取UUID
-     * 
-     * @return UUID
-     */
-    public static String getUUID() {
-        return UUID.randomUUID().toString();
-    }
-    
-    /**
-     * 获取小写的UUID
-     * 
-     * @return 转换为小写的UUID
-     */
-    public static String getLowerUUID() {
-        return toLowerCase(getUUID());
-    }
-    
-    /**
-     * 获取大写的UUID
-     * 
-     * @return 转换为大写的UUID
-     */
-    public static String getUpperUUID() {
-        return toUpperCase(getUUID());
-    }
-    
-    /**
      * 格式化null字符串
      * 
      * @param value 要格式化的String
      * @return 如果String等于null，则返回空字符串，否则返回String本身
      */
-    public static String formatNullString(String value) {
+    static String formatNullString(String value) {
         return value == null ? "" : value;
-    }
-    
-    /**
-     * 格式化null金额
-     * 
-     * @param value 要格式化的Amount
-     * @return 如果Amount等于null或空字符串，则返回null，否则返回Amount本身
-     */
-    public static String formatNullAmount(String value) {
-        return (value == null || value.trim().equals("")) ? null : value;
     }
     
     /**
@@ -86,7 +24,7 @@ public final class StringUtil {
      * @param value 要验证的String
      * @return 如果String等于null或空字符串，则返回true，否则返回false
      */
-    public static boolean isEmptyString(String value) {
+    static boolean isEmptyString(String value) {
         return formatNullString(value).trim().equals("");
     }
     
@@ -98,16 +36,15 @@ public final class StringUtil {
      * @param fillLength 补位长度
      * @return 补位后的字符串
      */
-    public static String fill(String value, String fillType, Integer fillLength) {
+    static String fill(String value, String fillType, Integer fillLength) {
         value = formatNullString(value);
         int valueLength = value.length();
         if (isEmptyString(fillType)){
             fillType = "0";
         }
         if ("01234".indexOf(fillType) == -1) {
-            PlatformException pe = new PlatformException("补位类型错误");
-            LogUtil.exception(pe);
-            throw pe;
+            System.out.println("补位类型错误");
+            return value;
         }
         if (fillLength == null) {
             fillLength = valueLength;
@@ -145,7 +82,7 @@ public final class StringUtil {
      * @param target 裁剪字符
      * @return 裁剪后的字符串
      */
-    public static String trim(String value, String trimType, char target) {
+    static String trim(String value, String trimType, char target) {
         if (value != null) {
             while (value.length() > 0) {
                 if (!"0".equals(trimType) && !"1".equals(trimType) && !"2".equals(trimType)) {

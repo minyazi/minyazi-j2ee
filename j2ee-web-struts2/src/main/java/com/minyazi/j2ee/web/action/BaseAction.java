@@ -2,9 +2,18 @@ package com.minyazi.j2ee.web.action;
 
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.RequestAware;
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.minyazi.j2ee.core.util.LogUtil;
 import com.opensymphony.xwork2.ActionContext;
@@ -16,26 +25,39 @@ import com.opensymphony.xwork2.ActionSupport;
  * 
  * @author minyazi
  */
-public abstract class BaseAction extends ActionSupport implements ApplicationAware, SessionAware, RequestAware {
+public abstract class BaseAction extends ActionSupport implements ApplicationAware, SessionAware, RequestAware, ServletRequestAware, ServletResponseAware {
     private static final long serialVersionUID = 1L;
     
-    public Map<String, Object> application;
-    public Map<String, Object> session;
-    public Map<String, Object> request;
+    protected Map<String, Object> application;
+    protected Map<String, Object> session;
+    protected Map<String, Object> request;
+    protected HttpServletRequest servletRequest;
+    protected HttpServletResponse servletResponse;
+    protected HttpSession httpSession;
+    protected ServletContext servletContext;
+    protected ApplicationContext applicationContext;
     
-    private String token; // 令牌
-    private String message; // 提示信息
+    protected String token; // 令牌
+    protected String message; // 提示信息
     
     public BaseAction() {}
     
     @Override
     public void setApplication(Map<String, Object> application) {
         this.application = application;
+        /*
+        this.application = ServletActionContext.getContext().getApplication();
+        this.application = ActionContext.getContext().getApplication();
+        */
     }
     
     @Override
     public void setSession(Map<String, Object> session) {
         this.session = session;
+        /*
+        this.session = ServletActionContext.getContext().getSession();
+        this.session = ActionContext.getContext().getSession();
+        */
         
         ActionInvocation invocation = ActionContext.getContext().getActionInvocation();
         StringBuilder log = new StringBuilder(500);
@@ -48,6 +70,48 @@ public abstract class BaseAction extends ActionSupport implements ApplicationAwa
     @Override
     public void setRequest(Map<String, Object> request) {
         this.request = request;
+        /*
+        this.request = (Map<String, Object>) ServletActionContext.getContext().get("request");
+        this.request = (Map<String, Object>) ActionContext.getContext().get("request");
+        */
+    }
+    
+    @Override
+    public void setServletRequest(HttpServletRequest servletRequest) {
+        this.servletRequest = servletRequest;
+        /*
+        this.servletRequest = ServletActionContext.getRequest();
+        */
+        
+        setHttpSession(servletRequest.getSession());
+        setServletContext(httpSession.getServletContext());
+        setApplicationContext(WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext));
+    }
+    
+    @Override
+    public void setServletResponse(HttpServletResponse servletResponse) {
+        this.servletResponse = servletResponse;
+        /*
+        this.servletResponse = ServletActionContext.getResponse();
+        */
+    }
+    
+    public void setHttpSession(HttpSession httpSession) {
+        this.httpSession = httpSession;
+        /*
+        this.httpSession = ServletActionContext.getRequest().getSession();
+        */
+    }
+    
+    public void setServletContext(ServletContext servletContext) {
+        this.servletContext = servletContext;
+        /*
+        this.servletContext = ServletActionContext.getServletContext();
+        */
+    }
+    
+    public void setApplicationContext(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
     }
     
     public String getToken() {

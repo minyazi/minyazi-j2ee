@@ -5,30 +5,30 @@
     
     <parent>
         <groupId>com.minyazi.j2ee</groupId>
-        <artifactId>minyazi-parent</artifactId>
+        <artifactId>j2ee-parent</artifactId>
         <version>1.0.0</version>
-        <relativePath>../minyazi-parent/pom.xml</relativePath>
+        <relativePath>../j2ee-parent/pom.xml</relativePath>
     </parent>
     
-    <artifactId>minyazi-web-springmvc</artifactId>
+    <artifactId>j2ee-web-springmvc</artifactId>
     <packaging>war</packaging>
-    <name>Minyazi J2EE Web SpringMVC</name>
+    <name>J2EE Web SpringMVC Impl</name>
     
     <properties>
         <cxf.version>3.0.15</cxf.version>
     </properties>
     
     <dependencies>
-        <!-- minyazi-core -->
+        <!-- j2ee-core -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>minyazi-core</artifactId>
+            <artifactId>j2ee-core</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!-- minyazi-service -->
+        <!-- j2ee-service -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>minyazi-service</artifactId>
+            <artifactId>j2ee-service</artifactId>
             <version>${project.version}</version>
         </dependency>
         <!-- servlet-api -->
@@ -102,7 +102,7 @@
     </dependencies>
     
     <build>
-        <finalName>minyazi-web</finalName>
+        <finalName>j2ee-web</finalName>
         <plugins>
             <!-- 配置打包时将依赖的jar包拷贝到指定目录 
             <plugin>

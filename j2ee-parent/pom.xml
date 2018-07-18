@@ -3,23 +3,23 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.minyazi.j2ee</groupId>
-    <artifactId>minyazi-parent</artifactId>
+    <artifactId>j2ee-parent</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
-    <name>Minyazi J2EE Parent</name>
+    <name>J2EE Parent</name>
     
     <modules>
-        <module>../minyazi-core</module>
-        <module>../minyazi-dao</module>
-        <!--<module>../minyazi-dao-xml</module>-->
-        <!--<module>../minyazi-dao-jpa</module>-->
-        <module>../minyazi-dao-springjdbc</module>
-        <!--<module>../minyazi-dao-hibernate</module>-->
-        <!--<module>../minyazi-dao-mybatis</module>-->
-        <module>../minyazi-service</module>
-        <module>../minyazi-web-struts2</module>
-        <module>../minyazi-web-springmvc</module>
-        <module>../minyazi-test</module>
+        <module>../j2ee-core</module>
+        <module>../j2ee-dao</module>
+        <!--<module>../j2ee-dao-xml</module>-->
+        <!--<module>../j2ee-dao-jpa</module>-->
+        <module>../j2ee-dao-springjdbc</module>
+        <!--<module>../j2ee-dao-hibernate</module>-->
+        <!--<module>../j2ee-dao-mybatis</module>-->
+        <module>../j2ee-service</module>
+        <module>../j2ee-web-struts2</module>
+        <module>../j2ee-web-springmvc</module>
+        <module>../j2ee-test</module>
     </modules>
     
     <properties>

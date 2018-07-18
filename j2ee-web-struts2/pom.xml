@@ -5,14 +5,14 @@
     
     <parent>
         <groupId>com.minyazi.j2ee</groupId>
-        <artifactId>minyazi-parent</artifactId>
+        <artifactId>j2ee-parent</artifactId>
         <version>1.0.0</version>
-        <relativePath>../minyazi-parent/pom.xml</relativePath>
+        <relativePath>../j2ee-parent/pom.xml</relativePath>
     </parent>
     
-    <artifactId>minyazi-web-struts2</artifactId>
+    <artifactId>j2ee-web-struts2</artifactId>
     <packaging>war</packaging>
-    <name>Minyazi J2EE Web Struts2</name>
+    <name>J2EE Web Struts2 Impl</name>
     
     <properties>
         <struts2.version>2.3.24.1</struts2.version>
@@ -20,16 +20,16 @@
     </properties>
     
     <dependencies>
-        <!-- minyazi-core -->
+        <!-- j2ee-core -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>minyazi-core</artifactId>
+            <artifactId>j2ee-core</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!-- minyazi-service -->
+        <!-- j2ee-service -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>minyazi-service</artifactId>
+            <artifactId>j2ee-service</artifactId>
             <version>${project.version}</version>
         </dependency>
         <!-- servlet-api -->
@@ -116,7 +116,7 @@
     </dependencies>
     
     <build>
-        <finalName>minyazi-web</finalName>
+        <finalName>j2ee-web</finalName>
         <plugins>
             <!-- 配置打包时将依赖的jar包拷贝到指定目录 
             <plugin>
@@ -142,6 +142,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
+                    <outputDirectory>${project.build.directory}</outputDirectory>
                     <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
                     <archive>
                         <addMavenDescriptor>false</addMavenDescriptor>

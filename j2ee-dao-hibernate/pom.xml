@@ -5,29 +5,29 @@
     
     <parent>
         <groupId>com.minyazi.j2ee</groupId>
-        <artifactId>minyazi-parent</artifactId>
+        <artifactId>j2ee-parent</artifactId>
         <version>1.0.0</version>
-        <relativePath>../minyazi-parent/pom.xml</relativePath>
+        <relativePath>../j2ee-parent/pom.xml</relativePath>
     </parent>
     
-    <artifactId>minyazi-dao-hibernate</artifactId>
-    <name>Minyazi J2EE DAO Hibernate Impl</name>
+    <artifactId>j2ee-dao-hibernate</artifactId>
+    <name>J2EE DAO Hibernate Impl</name>
     
     <properties>
         <hibernate.version>3.6.0.Final</hibernate.version>
     </properties>
     
     <dependencies>
-        <!-- minyazi-core -->
+        <!-- j2ee-core -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>minyazi-core</artifactId>
+            <artifactId>j2ee-core</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!-- minyazi-dao -->
+        <!-- j2ee-dao -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>minyazi-dao</artifactId>
+            <artifactId>j2ee-dao</artifactId>
             <version>${project.version}</version>
         </dependency>
         <!-- spring-core -->

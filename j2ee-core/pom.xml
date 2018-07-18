@@ -5,13 +5,13 @@
     
     <parent>
         <groupId>com.minyazi.j2ee</groupId>
-        <artifactId>minyazi-parent</artifactId>
+        <artifactId>j2ee-parent</artifactId>
         <version>1.0.0</version>
-        <relativePath>../minyazi-parent/pom.xml</relativePath>
+        <relativePath>../j2ee-parent/pom.xml</relativePath>
     </parent>
     
-    <artifactId>minyazi-core</artifactId>
-    <name>Minyazi J2EE Core</name>
+    <artifactId>j2ee-core</artifactId>
+    <name>J2EE Core</name>
     
     <dependencies>
         <!-- commons-codec -->

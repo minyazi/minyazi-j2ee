@@ -5,13 +5,13 @@
     
     <parent>
         <groupId>com.minyazi.j2ee</groupId>
-        <artifactId>minyazi-parent</artifactId>
+        <artifactId>j2ee-parent</artifactId>
         <version>1.0.0</version>
-        <relativePath>../minyazi-parent/pom.xml</relativePath>
+        <relativePath>../j2ee-parent/pom.xml</relativePath>
     </parent>
     
-    <artifactId>minyazi-dao</artifactId>
-    <name>Minyazi J2EE DAO</name>
+    <artifactId>j2ee-dao</artifactId>
+    <name>J2EE DAO</name>
     
     <dependencies>
         <!-- hibernate-jpa-2.0-api -->

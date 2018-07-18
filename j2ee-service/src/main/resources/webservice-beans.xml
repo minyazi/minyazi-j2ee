@@ -13,8 +13,8 @@
     -->
     
     <!-- Beans -->
-    <context:component-scan base-package="com.minyazi.service.webservice.impl">
-        <context:include-filter type="regex" expression="com.minyazi.service.webservice.impl.*Impl" />
+    <context:component-scan base-package="com.minyazi.j2ee.service.webservice.impl">
+        <context:include-filter type="regex" expression="com.minyazi.j2ee.service.webservice.impl.*Impl" />
     </context:component-scan>
     
     <jaxws:endpoint id="helloWorldWS" implementor="#helloWorldWebService" address="/helloWorldWS" />

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- Beans -->
+    <context:component-scan base-package="com.minyazi.j2ee.dao.hibernate">
+        <context:include-filter type="regex" expression="com.minyazi.j2ee.dao.hibernate.*Impl" />
+    </context:component-scan>
+    
+    <!-- C3P0数据源 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="com.mysql.jdbc.Driver" />
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/testdb?useUnicode=true&amp;characterEncoding=utf8" />
+        <property name="user" value="root" />
+        <property name="password" value="rootroot" />
+        
+        <!-- 当连接池中的连接用完时，C3P0一次性创建的新连接数 -->
+        <property name="acquireIncrement" value="5" />
+        <!-- 初始化时创建的连接数，取值应在minPoolSize与maxPoolSize之间 -->
+        <property name="initialPoolSize" value="10" />
+        <!-- 连接池中保留的最小连接数 -->
+        <property name="minPoolSize" value="5" />
+        <!-- 连接池中保留的最大连接数 -->
+        <property name="maxPoolSize" value="30" />
+        <!-- 最大空闲时间，60秒内未使用则连接被丢弃，若为0则永不丢弃 -->
+        <property name="maxIdleTime" value="60" />
+        <!-- 每60秒检查所有连接池中的空闲连接 -->
+        <property name="idleConnectionTestPeriod" value="60" />
+    </bean>
+    
+    <!-- Hibernate SessionFactory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <!-- 数据源 -->
+        <property name="dataSource" ref="dataSource" />
+        <!-- PO -->
+        <property name="packagesToScan">
+            <list>
+                <value>com.minyazi.j2ee.dao.domain</value>
+            </list>
+        </property>
+        <!-- Hibernate属性 -->
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <!-- Spring HibernateTemplate -->
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+</beans>

@@ -4,9 +4,9 @@
     <!-- 配置类型别名 -->
     <typeAliases>
         <!-- 方式一 -->
-        <typeAlias alias="ProcessInfo" type="com.minyazi.dao.domain.ProcessInfoDO" />
+        <typeAlias alias="ProcessInfo" type="com.minyazi.j2ee.dao.domain.ProcessInfoDO" />
         <!-- 方式二 
-        <package name="com.minyazi.dao.domain" />
+        <package name="com.minyazi.j2ee.dao.domain" />
         -->
     </typeAliases>
     
@@ -25,6 +25,6 @@
     
     <!-- 配置映射器 -->
     <mappers>
-        <mapper resource="com/minyazi/dao/mybatis/ProcessInfoMapper.xml" />
+        <mapper resource="com/minyazi/j2ee/dao/mybatis/ProcessInfoMapper.xml" />
     </mappers>
 </configuration>

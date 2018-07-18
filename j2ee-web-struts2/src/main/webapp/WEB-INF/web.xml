@@ -8,20 +8,20 @@
     
     <!-- 应用监听器（初始化数据库连接池） 
     <listener>
-        <listener-class>com.minyazi.web.listener.DataSourceInitApplicationListener</listener-class>
+        <listener-class>com.minyazi.j2ee.web.listener.DataSourceInitApplicationListener</listener-class>
     </listener>
     -->
     
     <!-- 应用监听器（初始化代码列表） 
     <listener>
-        <listener-class>com.minyazi.web.listener.CodeInitApplicationListener</listener-class>
+        <listener-class>com.minyazi.j2ee.web.listener.CodeInitApplicationListener</listener-class>
     </listener>
     -->
     
     <!-- Struts2核心过滤器 -->
     <filter>
         <filter-name>struts2</filter-name>
-        <filter-class>com.minyazi.web.filter.ExtendStruts2Filter</filter-class>
+        <filter-class>com.minyazi.j2ee.web.filter.ExtendStruts2Filter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>struts2</filter-name>
@@ -37,12 +37,12 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>
             <!-- 方式一 -->
-            classpath:/minyazi-dao-springjdbc.xml,
-            classpath:/minyazi-service-springjdbc.xml,
+            classpath:/j2ee-dao-springjdbc.xml,
+            classpath:/j2ee-service-springjdbc.xml,
             classpath:/webservice-beans.xml
             <!-- 方式二  
-            classpath*:minyazi-dao-springjdbc.xml,
-            classpath*:minyazi-service-springjdbc.xml
+            classpath*:j2ee-dao-springjdbc.xml,
+            classpath*:j2ee-service-springjdbc.xml
             -->
         </param-value>
     </context-param>

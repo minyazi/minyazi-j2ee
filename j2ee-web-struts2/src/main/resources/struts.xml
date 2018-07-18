@@ -24,7 +24,7 @@
     </package>
     
     <package name="authority" namespace="/authority" extends="json-default">
-        <action name="authority" class="com.minyazi.web.action.AuthorityAction">
+        <action name="authority" class="com.minyazi.j2ee.web.action.AuthorityAction">
             <result name="success" type="json">
                 <param name="noCache">true</param>
                 <param name="contentType">text/html</param>
@@ -35,7 +35,7 @@
     <package name="base" namespace="/base" extends="struts-default">
         <interceptors>
             <!-- 异常记录拦截器 -->
-            <interceptor name="exceptionInterceptor" class="com.minyazi.web.interceptor.ExceptionInterceptor" />
+            <interceptor name="exceptionInterceptor" class="com.minyazi.j2ee.web.interceptor.ExceptionInterceptor" />
             <interceptor-stack name="exceptionStack">
                 <interceptor-ref name="defaultStack" />
                 <interceptor-ref name="exceptionInterceptor" />
@@ -57,17 +57,17 @@
     </package>
     
     <package name="index" namespace="/index" extends="base">
-        <action name="input" class="com.minyazi.web.action.LoginAction" method="input">
+        <action name="input" class="com.minyazi.j2ee.web.action.LoginAction" method="input">
             <result name="success">/jsp/login.jsp</result>
         </action>
-        <action name="login" class="com.minyazi.web.action.LoginAction">
+        <action name="login" class="com.minyazi.j2ee.web.action.LoginAction">
             <result name="input">/login.jsp</result>
             <result name="success" type="redirectAction">
                 <param name="namespace">/secure</param>
                 <param name="actionName">index</param>
             </result>
         </action>
-        <action name="logout" class="com.minyazi.web.action.LogoutAction">
+        <action name="logout" class="com.minyazi.j2ee.web.action.LogoutAction">
             <result name="success" type="redirect">/login.jsp</result>
         </action>
     </package>
@@ -75,7 +75,7 @@
     <package name="secure" namespace="/secure" extends="base">
         <interceptors>
             <!-- 权限检查拦截器 -->
-            <interceptor name="authorityInterceptor" class="com.minyazi.web.interceptor.AuthorityInterceptor" />
+            <interceptor name="authorityInterceptor" class="com.minyazi.j2ee.web.interceptor.AuthorityInterceptor" />
             <interceptor-stack name="authorityStack">
                 <interceptor-ref name="exceptionStack" />
                 <interceptor-ref name="authorityInterceptor" />
@@ -87,13 +87,13 @@
         <action name="index">
             <result name="success">/jsp/index.jsp</result>
         </action>
-        <action name="welcome" class="com.minyazi.web.action.WelcomeAction">
+        <action name="welcome" class="com.minyazi.j2ee.web.action.WelcomeAction">
             <result name="success">/jsp/welcome.jsp</result>
         </action>
     </package>
     
     <package name="file" namespace="/file" extends="secure">
-        <action name="upload" class="com.minyazi.web.action.FileAction" method="upload">
+        <action name="upload" class="com.minyazi.j2ee.web.action.FileAction" method="upload">
             <!-- 允许上传的文件类型 -->
             <param name="allowedTypes"></param>
             <!-- 允许上传的文件最大大小 -->
@@ -104,7 +104,7 @@
                 <param name="actionName">${action}</param>
             </result>
         </action>
-        <action name="download" class="com.minyazi.web.action.FileAction" method="download">
+        <action name="download" class="com.minyazi.j2ee.web.action.FileAction" method="download">
             <result name="success" type="stream">
                 <param name="contentType">${uploadContentType}</param>
                 <param name="inputName">download</param>
@@ -112,7 +112,7 @@
                 <param name="bufferSize">1024</param>
             </result>
         </action>
-        <action name="delete" class="com.minyazi.web.action.FileAction" method="delete">
+        <action name="delete" class="com.minyazi.j2ee.web.action.FileAction" method="delete">
             <result name="success" type="redirectAction">
                 <param name="namespace">/${namespace}</param>
                 <param name="actionName">${action}</param>
@@ -120,5 +120,5 @@
         </action>
     </package>
     
-    <include file="struts-minyazi.xml" />
+    <include file="struts-j2ee.xml" />
 </struts>

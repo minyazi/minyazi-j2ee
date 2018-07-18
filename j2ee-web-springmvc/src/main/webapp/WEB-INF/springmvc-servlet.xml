@@ -10,7 +10,7 @@
     <mvc:annotation-driven />
     
     <!-- Beans -->
-    <context:component-scan base-package="com.minyazi.web.controller">
-        <context:include-filter type="regex" expression="com.minyazi.web.controller.*Controller" />
+    <context:component-scan base-package="com.minyazi.j2ee.web.controller">
+        <context:include-filter type="regex" expression="com.minyazi.j2ee.web.controller.*Controller" />
     </context:component-scan>
 </beans>

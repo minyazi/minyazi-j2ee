@@ -9,9 +9,9 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.minyazi.core.util.LogUtil;
-import com.minyazi.dao.ProcessInfoDao;
-import com.minyazi.dao.domain.ProcessInfoDO;
+import com.minyazi.j2ee.core.util.LogUtil;
+import com.minyazi.j2ee.dao.ProcessInfoDao;
+import com.minyazi.j2ee.dao.domain.ProcessInfoDO;
 
 public class MyBatisTest {
     private static SqlSessionFactory sessionFactory;

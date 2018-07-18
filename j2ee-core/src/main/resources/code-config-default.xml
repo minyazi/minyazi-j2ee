@@ -10,8 +10,8 @@
             key   : 代码项键
             value : 代码项值
         -->
-        <item key="html" value="com.minyazi.core.util.filter.HtmlStringFilter" />
-        <item key="lower" value="com.minyazi.core.util.filter.LowerStringFilter" />
-        <item key="upper" value="com.minyazi.core.util.filter.UpperStringFilter" />
+        <item key="html" value="com.minyazi.j2ee.core.util.filter.HtmlStringFilter" />
+        <item key="lower" value="com.minyazi.j2ee.core.util.filter.LowerStringFilter" />
+        <item key="upper" value="com.minyazi.j2ee.core.util.filter.UpperStringFilter" />
     </code>
 </codes>

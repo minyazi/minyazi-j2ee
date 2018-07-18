@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <package name="j2ee" namespace="/j2ee" extends="secure">
+        <action name="j2ee">
+            <result name="success">/jsp/j2ee.jsp</result>
+        </action>
+    </package>
+</struts>

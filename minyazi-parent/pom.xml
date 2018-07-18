@@ -18,6 +18,7 @@
         <!--<module>../minyazi-dao-mybatis</module>-->
         <module>../minyazi-service</module>
         <module>../minyazi-web-struts2</module>
+        <module>../minyazi-web-springmvc</module>
         <module>../minyazi-test</module>
     </modules>
     

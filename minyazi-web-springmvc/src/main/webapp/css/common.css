@@ -1,0 +1,77 @@
+/* CSS Document */
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    font-size: 13px;
+    font-family: 'Microsoft Yahei';
+    background-color: #EEEEEE;
+}
+table, th, td, img {
+    border: 0px;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+th, td {
+    padding: 0px;
+    text-align: left;
+    vertical-align: middle;
+    /* 强制在同一行内显示所有文本，直到文本结束或者遭遇br对象 */
+    white-space: nowrap;
+}
+textarea {
+    width: 100%;
+    height: 100px;
+    
+}
+fieldset {
+    border: 1px solid #C1D1DB;
+}
+legend {
+    font-weight: bold;
+}
+fieldset div {
+    padding: 5px 10px 5px 10px;
+}
+form {
+    margin: 0px;
+    padding: 0px;
+}
+
+a {
+    cursor: pointer;
+}
+a:link {
+    color: blue;
+    text-decoration: none;
+}
+a:visited {
+    color: blue;
+    text-decoration: none;
+}
+a:hover {
+    color: red;
+    text-decoration: none;
+}
+
+.mouseout {
+    cursor: pointer;
+    color: blue;
+}
+.mouseover {
+    color: red;
+}
+.empty {
+    color: #CCCCCC;
+    font-style: italic;
+}
+
+.record {
+    background-color: #FFFFEE;
+}
+.over {
+    background-color: #F0F5F9;
+}

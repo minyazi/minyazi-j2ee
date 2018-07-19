@@ -5,7 +5,7 @@ package com.minyazi.j2ee.service;
  * 
  * @author minyazi
  */
-public class ServiceException extends Exception {
+public class ServiceException extends RuntimeException {
     private static final long serialVersionUID = 1L;
     
     public ServiceException() {

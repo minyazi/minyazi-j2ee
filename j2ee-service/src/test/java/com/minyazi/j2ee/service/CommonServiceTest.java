@@ -13,7 +13,7 @@ public class CommonServiceTest {
     
     @Before
     public void init() throws Exception {
-        String[] springConfigFiles = {"j2ee-dao-springjdbc.xml", "j2ee-service-springjdbc.xml"};
+        String[] springConfigFiles = {"j2ee-dao.xml", "j2ee-service-springjdbc.xml"};
         context = new ClassPathXmlApplicationContext(springConfigFiles);
         commonService = context.getBean("commonService", CommonService.class);
     }

@@ -10,7 +10,7 @@ import com.minyazi.j2ee.dao.ProcessInfoDao;
 import com.minyazi.j2ee.dao.domain.ProcessInfoDO;
 import com.minyazi.j2ee.service.ProcessInfoService;
 import com.minyazi.j2ee.service.ServiceException;
-import com.minyazi.j2ee.service.domain.PagingDTO;
+import com.minyazi.j2ee.service.dto.PagingDTO;
 
 /**
  * 处理信息Service

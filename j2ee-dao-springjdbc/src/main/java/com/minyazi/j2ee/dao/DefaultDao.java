@@ -1,20 +1,19 @@
-package com.minyazi.j2ee.dao.springjdbc;
+package com.minyazi.j2ee.dao;
 
-import javax.annotation.Resource;
-
-import org.springframework.beans.factory.annotation.Required;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.minyazi.j2ee.dao.PagingDaoAdapter;
+import com.minyazi.j2ee.dao.springjdbc.CommonDaoImpl;
 
 /**
  * 默认DAO
  * 
  * @author minyazi
  */
-public class DefaultDao<T> extends PagingDaoAdapter<T> {
-    private JdbcTemplate jdbcTemplate;
-    private CommonDaoImpl commonDao;
+public abstract class DefaultDao<T> extends PagingDaoAdapter<T> {
+    protected JdbcTemplate jdbcTemplate;
+    protected CommonDaoImpl commonDao;
     
     public DefaultDao() {}
     
@@ -22,8 +21,7 @@ public class DefaultDao<T> extends PagingDaoAdapter<T> {
         return jdbcTemplate;
     }
     
-    @Required
-    @Resource
+    @Autowired
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -32,8 +30,7 @@ public class DefaultDao<T> extends PagingDaoAdapter<T> {
         return commonDao;
     }
     
-    @Required
-    @Resource
+    @Autowired
     public void setCommonDao(CommonDaoImpl commonDao) {
         this.commonDao = commonDao;
     }

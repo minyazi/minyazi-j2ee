@@ -14,7 +14,7 @@ public class ProcessInfoServiceTest {
     
     @Before
     public void init() throws Exception {
-        String[] springConfigFiles = {"j2ee-dao-springjdbc.xml", "j2ee-service-springjdbc.xml"};
+        String[] springConfigFiles = {"j2ee-dao.xml", "j2ee-service-springjdbc.xml"};
         context = new ClassPathXmlApplicationContext(springConfigFiles);
         processInfoService = context.getBean("processInfoService", ProcessInfoService.class);
     }

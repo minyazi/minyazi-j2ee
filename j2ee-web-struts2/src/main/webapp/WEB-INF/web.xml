@@ -37,11 +37,11 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>
             <!-- 方式一 -->
-            classpath:/j2ee-dao-springjdbc.xml,
+            classpath:/j2ee-dao.xml,
             classpath:/j2ee-service-springjdbc.xml,
             classpath:/webservice-beans.xml
             <!-- 方式二  
-            classpath*:j2ee-dao-springjdbc.xml,
+            classpath*:j2ee-dao.xml,
             classpath*:j2ee-service-springjdbc.xml
             -->
         </param-value>

@@ -1,4 +1,4 @@
-package com.minyazi.j2ee.service.domain;
+package com.minyazi.j2ee.service.dto;
 
 import java.util.ArrayList;
 import java.util.List;

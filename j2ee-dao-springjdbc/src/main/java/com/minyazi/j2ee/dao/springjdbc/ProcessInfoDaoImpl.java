@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.minyazi.j2ee.dao.DaoException;
+import com.minyazi.j2ee.dao.DefaultDao;
 import com.minyazi.j2ee.dao.ProcessInfoDao;
 import com.minyazi.j2ee.dao.domain.ProcessInfoDO;
 

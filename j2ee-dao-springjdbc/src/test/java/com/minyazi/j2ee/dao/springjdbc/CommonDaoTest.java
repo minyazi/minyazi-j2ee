@@ -7,13 +7,13 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.jdbc.support.rowset.SqlRowSetMetaData;
 
 import com.minyazi.j2ee.core.util.LogUtil;
-import com.minyazi.j2ee.dao.springjdbc.CommonDaoImpl;
+import com.minyazi.j2ee.dao.DaoBeansConfig;
 
 public class CommonDaoTest {
     private ApplicationContext context;
@@ -21,7 +21,7 @@ public class CommonDaoTest {
     
     @Before
     public void init() throws Exception {
-        context = new ClassPathXmlApplicationContext("j2ee-dao-springjdbc.xml");
+        context = new AnnotationConfigApplicationContext(DaoBeansConfig.class);
         commonDao = context.getBean("commonDao", CommonDaoImpl.class);
     }
     

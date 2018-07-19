@@ -1,6 +1,6 @@
 package com.minyazi.j2ee.service;
 
-import com.minyazi.j2ee.service.domain.PagingDTO;
+import com.minyazi.j2ee.service.dto.PagingDTO;
 
 /**
  * 分页Service

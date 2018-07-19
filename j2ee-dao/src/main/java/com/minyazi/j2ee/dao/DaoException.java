@@ -5,7 +5,7 @@ package com.minyazi.j2ee.dao;
  * 
  * @author minyazi
  */
-public class DaoException extends Exception {
+public class DaoException extends RuntimeException {
     private static final long serialVersionUID = 1L;
     
     public DaoException() {

@@ -1,13 +1,12 @@
 package com.minyazi.j2ee.service.impl;
 
-import javax.annotation.Resource;
-
-import org.springframework.beans.factory.annotation.Required;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.minyazi.j2ee.dao.DaoException;
 import com.minyazi.j2ee.dao.ProcessInfoDao;
 import com.minyazi.j2ee.dao.domain.ProcessInfoDO;
+import com.minyazi.j2ee.service.DefaultService;
 import com.minyazi.j2ee.service.ProcessInfoService;
 import com.minyazi.j2ee.service.ServiceException;
 import com.minyazi.j2ee.service.dto.PagingDTO;
@@ -27,8 +26,7 @@ public class ProcessInfoServiceImpl extends DefaultService<ProcessInfoDO> implem
         return processInfoDao;
     }
     
-    @Required
-    @Resource
+    @Autowired
     public void setProcessInfoDao(ProcessInfoDao processInfoDao) {
         this.processInfoDao = processInfoDao;
     }
@@ -38,9 +36,7 @@ public class ProcessInfoServiceImpl extends DefaultService<ProcessInfoDO> implem
         try {
             int totalNumber = getProcessInfoDao().getTotalNumber();
             PagingDTO<ProcessInfoDO> result = new PagingDTO<ProcessInfoDO>(page, pageSize, totalNumber);
-            if (totalNumber > 0) {
-                result.setData(getProcessInfoDao().selectToPaging(result.getOffset(), pageSize));
-            }
+            result.setData(getProcessInfoDao().selectToPaging(result.getOffset(), pageSize));
             return result;
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage(), e);
@@ -52,9 +48,7 @@ public class ProcessInfoServiceImpl extends DefaultService<ProcessInfoDO> implem
         try {
             int totalNumber = getProcessInfoDao().getTotalNumber(queryCondition);
             PagingDTO<ProcessInfoDO> result = new PagingDTO<ProcessInfoDO>(page, pageSize, totalNumber);
-            if (totalNumber > 0) {
-                result.setData(getProcessInfoDao().selectToPaging(result.getOffset(), pageSize, queryCondition));
-            }
+            result.setData(getProcessInfoDao().selectToPaging(result.getOffset(), pageSize, queryCondition));
             return result;
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage(), e);

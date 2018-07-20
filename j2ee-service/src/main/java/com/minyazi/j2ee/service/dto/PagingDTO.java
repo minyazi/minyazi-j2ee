@@ -80,8 +80,6 @@ public class PagingDTO<T> {
         setHasPreviousPage(getTotalPage() > 1 && getCurrentPage() > 1);
         // 判断是否有下一页
         setHasNextPage(getTotalPage() > 1 && getCurrentPage() < getTotalPage());
-        
-        setData(new ArrayList<T>());
     }
     
     public int getTotalNumber() {
@@ -167,7 +165,7 @@ public class PagingDTO<T> {
     @Override
     public String toString() {
         if (data == null) {
-            return super.toString();
+            return new ArrayList<T>().toString();
         }
         return data.toString();
     }

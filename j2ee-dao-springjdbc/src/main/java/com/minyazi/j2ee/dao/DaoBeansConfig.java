@@ -17,11 +17,13 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @Configuration
 @ComponentScan
 public class DaoBeansConfig {
+    // C3P0数据源
     @Bean(name="dataSource", destroyMethod="close")
     public DataSource dataSource() {
         return new ComboPooledDataSource("testdb");
     }
     
+    // Spring JdbcTemplate
     @Bean(name="jdbcTemplate")
     public JdbcTemplate jdbcTemplate(DataSource dataSource) {
         return new JdbcTemplate(dataSource);

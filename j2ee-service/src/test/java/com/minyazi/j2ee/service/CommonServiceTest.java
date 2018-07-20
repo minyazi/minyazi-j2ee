@@ -3,9 +3,7 @@ package com.minyazi.j2ee.service;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import com.minyazi.j2ee.service.CommonService;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class CommonServiceTest {
     private ApplicationContext context;
@@ -13,8 +11,7 @@ public class CommonServiceTest {
     
     @Before
     public void init() throws Exception {
-        String[] springConfigFiles = {"j2ee-dao.xml", "j2ee-service-springjdbc.xml"};
-        context = new ClassPathXmlApplicationContext(springConfigFiles);
+        context = new AnnotationConfigApplicationContext(ServiceBeansConfig.class);
         commonService = context.getBean("commonService", CommonService.class);
     }
     

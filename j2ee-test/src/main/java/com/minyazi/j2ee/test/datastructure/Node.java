@@ -5,7 +5,7 @@ package com.minyazi.j2ee.test.datastructure;
  * 
  * @author minyazi
  */
-public class Node<T extends Comparable<T>> {
+public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
     private T data; // 数据域
     private Node<T> next; // 指针域
     
@@ -60,5 +60,10 @@ public class Node<T extends Comparable<T>> {
     @Override
     public String toString() {
         return data == null ? "" : data.toString();
+    }
+    
+    @Override
+    public int compareTo(Node<T> other) {
+        return data.compareTo(other.getData());
     }
 }

@@ -5,36 +5,36 @@ package com.minyazi.j2ee.test.datastructure;
  * 
  * @author minyazi
  */
-public class LinkedList implements List {
+public class LinkedList<E extends Comparable<E>> implements List<E> {
     public LinkedList() {}
     
     @Override
-    public void add(int index, Node<?> node) throws IndexOutOfBoundsException {
+    public void add(int index, E element) throws IndexOutOfBoundsException {
         
     }
     
     @Override
-    public Node<?> get(int index) throws IndexOutOfBoundsException {
+    public E get(int index) throws IndexOutOfBoundsException {
         return null;
     }
     
     @Override
-    public Node<?> remove(int index) throws IndexOutOfBoundsException {
+    public E remove(int index) throws IndexOutOfBoundsException {
         return null;
     }
     
     @Override
-    public Node<?> set(int index, Node<?> node) throws IndexOutOfBoundsException {
+    public E set(int index, E element) throws IndexOutOfBoundsException {
         return null;
     }
     
     @Override
-    public List sort() {
+    public List<E> sort() {
         return null;
     }
     
     @Override
-    public int search(Node<?> node) {
+    public int search(E element) {
         return 0;
     }
     

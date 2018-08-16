@@ -7,56 +7,56 @@ import java.util.Arrays;
  * 
  * @author minyazi
  */
-public class ArrayList implements List {
-    private Node<?>[] nodes;
+public class ArrayList<E extends Comparable<E>> implements List<E> {
+    private Object[] elements;
     private int size; // 线性表的大小
     
     public ArrayList() {
-        nodes = new Node<?>[10];
+        elements = new Object[10];
         size = 0;
     }
     
     @Override
-    public void add(int index, Node<?> node) throws IndexOutOfBoundsException {
+    public void add(int index, E element) throws IndexOutOfBoundsException {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("索引越界");
         }
-        if (index == size) { // 在线性表的末尾插入结点
-            nodes[size] = node;
-        } else { // 在线性表的其他位置插入结点
+        if (index == size) { // 在线性表的末尾插入元素
+            elements[size] = element;
+        } else { // 在线性表的其他位置插入元素
             for (int i = size - 1; i >= index; i--) {
-                nodes[i + 1] = nodes[i];
+                elements[i + 1] = elements[i];
             }
-            nodes[index] = node;
+            elements[index] = element;
         }
         size++; // 线性表的大小加1
-        if (size == nodes.length) { // 扩容
-            nodes = Arrays.copyOf(nodes, size * 2);
+        if (size == elements.length) { // 扩容
+            elements = Arrays.copyOf(elements, size * 2);
         }
     }
     
     @Override
-    public Node<?> get(int index) throws IndexOutOfBoundsException {
+    public E get(int index) throws IndexOutOfBoundsException {
         return null;
     }
     
     @Override
-    public Node<?> remove(int index) throws IndexOutOfBoundsException {
+    public E remove(int index) throws IndexOutOfBoundsException {
         return null;
     }
     
     @Override
-    public Node<?> set(int index, Node<?> node) throws IndexOutOfBoundsException {
+    public E set(int index, E element) throws IndexOutOfBoundsException {
         return null;
     }
     
     @Override
-    public List sort() {
+    public List<E> sort() {
         return null;
     }
     
     @Override
-    public int search(Node<?> node) {
+    public int search(E element) {
         return 0;
     }
     
@@ -70,7 +70,7 @@ public class ArrayList implements List {
         StringBuilder result = new StringBuilder(500);
         result.append("[");
         for (int i = 0; i < size; i++) {
-            result.append(String.valueOf(nodes[i]));
+            result.append(String.valueOf(elements[i]));
             if (i < size - 1) {
                 result.append(", ");
             }
@@ -80,7 +80,7 @@ public class ArrayList implements List {
     }
     
     public static void main(String[] args) {
-        ArrayList list = new ArrayList();
+        ArrayList<Node<Integer>> list = new ArrayList<Node<Integer>>();
         for (int i = 0; i < 20; i++) {
             list.add(i, new Node<Integer>(i));
         }

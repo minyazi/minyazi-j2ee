@@ -76,18 +76,18 @@ public class ProcessInfoDO implements Serializable {
         }
         
         ProcessInfoDO other = (ProcessInfoDO) obj;
-        return other.getProcessCode().equals(this.getProcessCode());
+        return other.getProcessCode() == null ? false : other.getProcessCode().equals(processCode);
     }
     
     @Override
     public int hashCode() {
-        int result = 17;
-        result = result * 31 + (this.getProcessCode() == null ? 0 : this.getProcessCode().hashCode());
-        return result;
+        int hashCode = 17;
+        hashCode = hashCode * 31 + (processCode == null ? 0 : processCode.hashCode());
+        return hashCode;
     }
     
     @Override
     public String toString() {
-        return this.getProcessMesg() == null ? "" : this.getProcessMesg();
+        return processMesg == null ? "" : processMesg;
     }
 }

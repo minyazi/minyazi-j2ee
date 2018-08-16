@@ -9,22 +9,22 @@ public class LinkedList implements List {
     public LinkedList() {}
     
     @Override
-    public void add(int index, Node node) {
+    public void add(int index, Node<?> node) throws IndexOutOfBoundsException {
         
     }
     
     @Override
-    public Node get(int index) {
+    public Node<?> get(int index) throws IndexOutOfBoundsException {
         return null;
     }
     
     @Override
-    public Node remove(int index) {
+    public Node<?> remove(int index) throws IndexOutOfBoundsException {
         return null;
     }
     
     @Override
-    public Node set(int index, Node node) {
+    public Node<?> set(int index, Node<?> node) throws IndexOutOfBoundsException {
         return null;
     }
     
@@ -34,7 +34,12 @@ public class LinkedList implements List {
     }
     
     @Override
-    public int search(Node node) {
+    public int search(Node<?> node) {
+        return 0;
+    }
+    
+    @Override
+    public int size() {
         return 0;
     }
 }

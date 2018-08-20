@@ -22,12 +22,12 @@ public class ArrayList<E extends Comparable<E>> implements List<E> {
             throw new IndexOutOfBoundsException("索引越界");
         }
         if (index == size) { // 在线性表的末尾插入元素
-            elements[size] = element;
+            elements[size] = new Node<E>(element);
         } else { // 在线性表的其他位置插入元素
             for (int i = size - 1; i >= index; i--) {
                 elements[i + 1] = elements[i];
             }
-            elements[index] = element;
+            elements[index] = new Node<E>(element);
         }
         size++; // 线性表的大小加1
         if (size == elements.length) { // 扩容
@@ -80,9 +80,9 @@ public class ArrayList<E extends Comparable<E>> implements List<E> {
     }
     
     public static void main(String[] args) {
-        ArrayList<Node<Integer>> list = new ArrayList<Node<Integer>>();
+        List<String> list = new ArrayList<String>();
         for (int i = 0; i < 20; i++) {
-            list.add(i, new Node<Integer>(i));
+            list.add(i, i + "");
         }
         System.out.println(list.toString());
     }

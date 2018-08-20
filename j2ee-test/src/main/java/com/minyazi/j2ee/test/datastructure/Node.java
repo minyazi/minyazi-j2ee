@@ -9,10 +9,14 @@ public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
     private T data; // 数据域
     private Node<T> next; // 指针域
     
-    public Node() {}
+    public Node() {
+        this.data = null;
+        this.next = null;
+    }
     
     public Node(T data) {
         this.data = data;
+        this.next = null;
     }
     
     public Node(T data, Node<T> next) {

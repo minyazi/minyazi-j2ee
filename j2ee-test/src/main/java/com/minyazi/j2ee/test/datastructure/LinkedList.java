@@ -51,12 +51,38 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
     
     @Override
     public E remove(int index) throws IndexOutOfBoundsException {
-        return null;
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("索引越界");
+        }
+        Node<E> node = rootNode;
+        if (index == 0) { // 在线性表的首位移除元素
+            rootNode = node.getNext();
+            node.setNext(null);
+        } else { // 在线性表的其他位置移除元素
+            Node<E> tempNode = rootNode;
+            for (int i = 1; i < index; i++) {
+                tempNode = tempNode.getNext();
+            }
+            node = tempNode.getNext();
+            tempNode.setNext(node.getNext());
+            node.setNext(null);
+        }
+        size--; // 线性表的大小减1
+        return node.getData();
     }
     
     @Override
     public E set(int index, E element) throws IndexOutOfBoundsException {
-        return null;
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("索引越界");
+        }
+        Node<E> node = rootNode;
+        for (int i = 1; i <= index; i++) {
+            node = node.getNext();
+        }
+        E tempElement = node.getData();
+        node.setData(element);
+        return tempElement;
     }
     
     @Override
@@ -80,7 +106,7 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
         result.append("[");
         Node<E> node = rootNode;
         while (node != null) {
-            result.append(String.valueOf(node));
+            result.append(String.valueOf(node.getData()));
             node = node.getNext();
             if (node != null) {
                 result.append(", ");
@@ -95,6 +121,10 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
         for (int i = 0; i < 20; i++) {
             list.add(i, i + "");
         }
+        System.out.println(list.toString());
+        list.remove(5);
+        System.out.println(list.toString());
+        System.out.println(list.set(5, "a"));
         System.out.println(list.toString());
     }
 }

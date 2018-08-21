@@ -8,11 +8,12 @@ import java.util.Arrays;
  * @author minyazi
  */
 public class ArrayList<E extends Comparable<E>> implements List<E> {
-    private Object[] elements;
+    private Node<E>[] elements;
     private int size; // 线性表的大小
     
+    @SuppressWarnings("unchecked")
     public ArrayList() {
-        elements = new Object[10];
+        elements = new Node[10];
         size = 0;
     }
     
@@ -22,7 +23,7 @@ public class ArrayList<E extends Comparable<E>> implements List<E> {
             throw new IndexOutOfBoundsException("索引越界");
         }
         if (index == size) { // 在线性表的末尾插入元素
-            elements[size] = new Node<E>(element);
+            elements[index] = new Node<E>(element);
         } else { // 在线性表的其他位置插入元素
             for (int i = size - 1; i >= index; i--) {
                 elements[i + 1] = elements[i];
@@ -37,17 +38,39 @@ public class ArrayList<E extends Comparable<E>> implements List<E> {
     
     @Override
     public E get(int index) throws IndexOutOfBoundsException {
-        return null;
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("索引越界");
+        }
+        return elements[index].getData();
     }
     
     @Override
     public E remove(int index) throws IndexOutOfBoundsException {
-        return null;
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("索引越界");
+        }
+        Node<E> node = elements[index];
+        if (index == size - 1) { // 在线性表的末尾移除元素
+            elements[index] = null;
+        } else { // 在线性表的其他位置移除元素
+            for (int i = index; i < size - 1; i++) {
+                elements[i] = elements[i + 1];
+            }
+            elements[size - 1] = null;
+        }
+        size--; // 线性表的大小减1
+        return node.getData();
     }
     
     @Override
     public E set(int index, E element) throws IndexOutOfBoundsException {
-        return null;
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("索引越界");
+        }
+        Node<E> node = elements[index];
+        E tempElement = node.getData();
+        node.setData(element);
+        return tempElement;
     }
     
     @Override
@@ -70,7 +93,7 @@ public class ArrayList<E extends Comparable<E>> implements List<E> {
         StringBuilder result = new StringBuilder(500);
         result.append("[");
         for (int i = 0; i < size; i++) {
-            result.append(String.valueOf(elements[i]));
+            result.append(String.valueOf(elements[i].getData()));
             if (i < size - 1) {
                 result.append(", ");
             }
@@ -84,6 +107,10 @@ public class ArrayList<E extends Comparable<E>> implements List<E> {
         for (int i = 0; i < 20; i++) {
             list.add(i, i + "");
         }
+        System.out.println(list.toString());
+        list.remove(5);
+        System.out.println(list.toString());
+        System.out.println(list.set(5, "a"));
         System.out.println(list.toString());
     }
 }

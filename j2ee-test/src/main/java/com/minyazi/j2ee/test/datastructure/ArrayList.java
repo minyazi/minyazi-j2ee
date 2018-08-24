@@ -8,13 +8,31 @@ import java.util.Arrays;
  * @author minyazi
  */
 public class ArrayList<E extends Comparable<E>> implements List<E> {
+    private int initialCapacity = 10;
     private Node<E>[] elements;
     private int size; // 线性表的大小
     
-    @SuppressWarnings("unchecked")
     public ArrayList() {
-        elements = new Node[10];
+        initList();
+    }
+    
+    /**
+     * 初始化线性表
+     */
+    @SuppressWarnings("unchecked")
+    private void initList() {
+        elements = new Node[initialCapacity];
         size = 0;
+    }
+    
+    @Override
+    public void add(E element) {
+        Node<E> node = new Node<E>(element);
+        elements[size] = node;
+        size++; // 线性表的大小加1
+        if (size == elements.length) { // 扩容
+            elements = Arrays.copyOf(elements, size * 2);
+        }
     }
     
     @Override
@@ -22,18 +40,30 @@ public class ArrayList<E extends Comparable<E>> implements List<E> {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("索引越界");
         }
-        if (index == size) { // 在线性表的末尾插入元素
-            elements[index] = new Node<E>(element);
+        Node<E> node = new Node<E>(element);
+        // 为了便于理解，此处按插入元素的位置分开处理
+        if (index == size) { // 在线性表的尾部插入元素
+            elements[index] = node;
         } else { // 在线性表的其他位置插入元素
             for (int i = size - 1; i >= index; i--) {
                 elements[i + 1] = elements[i];
             }
-            elements[index] = new Node<E>(element);
+            elements[index] = node;
         }
         size++; // 线性表的大小加1
         if (size == elements.length) { // 扩容
             elements = Arrays.copyOf(elements, size * 2);
         }
+    }
+    
+    @Override
+    public void clear() {
+        for (int i = 0; i < size; i++) {
+            elements[i] = null;
+        }
+        
+        // 重新初始化线性表
+        initList();
     }
     
     @Override
@@ -45,12 +75,22 @@ public class ArrayList<E extends Comparable<E>> implements List<E> {
     }
     
     @Override
+    public boolean isEmpty() {
+        if (size == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    @Override
     public E remove(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("索引越界");
         }
         Node<E> node = elements[index];
-        if (index == size - 1) { // 在线性表的末尾移除元素
+        // 为了便于理解，此处按移除元素的位置分开处理
+        if (index == size - 1) { // 在线性表的尾部移除元素
             elements[index] = null;
         } else { // 在线性表的其他位置移除元素
             for (int i = index; i < size - 1; i++) {
@@ -86,6 +126,18 @@ public class ArrayList<E extends Comparable<E>> implements List<E> {
     @Override
     public int size() {
         return size;
+    }
+    
+    @Override
+    public void union(List<E> list) {
+        E tempElement = null;
+        int tempSize = list.size();
+        for (int i = 0; i < tempSize; i++) {
+            tempElement = list.get(i);
+            if (search(tempElement) == -1) {
+                add(tempElement);
+            }
+        }
     }
     
     @Override

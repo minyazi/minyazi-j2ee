@@ -1,6 +1,5 @@
 package com.minyazi.j2ee.test.datastructure;
 
-
 /**
  * 线性表：链式存储结构
  * 
@@ -11,8 +10,30 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
     private int size; // 线性表的大小
     
     public LinkedList() {
+        initList();
+    }
+    
+    /**
+     * 初始化线性表
+     */
+    private void initList() {
         rootNode = null;
         size = 0;
+    }
+    
+    @Override
+    public void add(E element) {
+        Node<E> node = new Node<E>(element);
+        if (size == 0) {
+            rootNode = node;
+        } else {
+            Node<E> tempNode = rootNode;
+            while(tempNode.getNext() != null) {
+                tempNode = tempNode.getNext();
+            }
+            tempNode.setNext(node);
+        }
+        size++; // 线性表的大小加1
     }
     
     @Override
@@ -21,7 +42,7 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
             throw new IndexOutOfBoundsException("索引越界");
         }
         Node<E> node = new Node<E>(element);
-        if (index == 0) { // 在线性表的首位插入元素
+        if (index == 0) { // 在线性表的首部插入元素
             if (size != 0) {
                 node.setNext(rootNode);
             }
@@ -38,6 +59,20 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
     }
     
     @Override
+    public void clear() {
+        Node<E> node = rootNode;
+        Node<E> tempNode = null;
+        while (node != null) {
+            tempNode = node.getNext();
+            node.setNext(null);
+            node = tempNode;
+        }
+        
+        // 重新初始化线性表
+        initList();
+    }
+    
+    @Override
     public E get(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("索引越界");
@@ -50,12 +85,21 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
     }
     
     @Override
+    public boolean isEmpty() {
+        if (size == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    @Override
     public E remove(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("索引越界");
         }
         Node<E> node = rootNode;
-        if (index == 0) { // 在线性表的首位移除元素
+        if (index == 0) { // 在线性表的首部移除元素
             rootNode = node.getNext();
             node.setNext(null);
         } else { // 在线性表的其他位置移除元素
@@ -98,6 +142,18 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
     @Override
     public int size() {
         return size;
+    }
+    
+    @Override
+    public void union(List<E> list) {
+        E tempElement = null;
+        int tempSize = list.size();
+        for (int i = 0; i < tempSize; i++) {
+            tempElement = list.get(i);
+            if (search(tempElement) == -1) {
+                add(tempElement);
+            }
+        }
     }
     
     @Override

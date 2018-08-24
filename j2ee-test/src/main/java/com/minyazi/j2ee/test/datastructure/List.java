@@ -7,6 +7,13 @@ package com.minyazi.j2ee.test.datastructure;
  */
 public interface List<E extends Comparable<E>> {
     /**
+     * 在线性表的尾部插入元素
+     * 
+     * @param element 要插入的元素
+     */
+    void add(E element);
+    
+    /**
      * 在线性表的指定位置插入元素
      * 
      * @param index 要插入元素处的索引
@@ -16,6 +23,11 @@ public interface List<E extends Comparable<E>> {
     void add(int index, E element) throws IndexOutOfBoundsException;
     
     /**
+     * 清空线性表
+     */
+    void clear();
+    
+    /**
      * 返回线性表中指定位置的元素
      * 
      * @param index 要返回的元素的索引
@@ -23,6 +35,13 @@ public interface List<E extends Comparable<E>> {
      * @throws IndexOutOfBoundsException 索引越界时抛出 (index < 0 || index >= size())
      */
     E get(int index) throws IndexOutOfBoundsException;
+    
+    /**
+     * 判断线性表是否是空表
+     * 
+     * @return 如果线性表是空表，则返回true，否则返回false
+     */
+    boolean isEmpty();
     
     /**
      * 移除线性表中指定位置的元素
@@ -64,4 +83,11 @@ public interface List<E extends Comparable<E>> {
      * @return 线性表中的元素数
      */
     int size();
+    
+    /**
+     * 将指定线性表并入线性表中，即求两个线性表的并集
+     * 
+     * @param list 要并入的线性表
+     */
+    void union(List<E> list);
 }

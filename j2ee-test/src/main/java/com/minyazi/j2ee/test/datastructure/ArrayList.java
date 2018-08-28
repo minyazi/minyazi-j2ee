@@ -25,16 +25,25 @@ public class ArrayList<E extends Comparable<E>> implements List<E> {
         size = 0;
     }
     
+    /*
+     * 时间复杂度：O(n)
+     */
     @Override
-    public void add(E element) {
-        Node<E> node = new Node<E>(element);
-        elements[size] = node;
-        size++; // 线性表的大小加1
-        if (size == elements.length) { // 扩容
-            elements = Arrays.copyOf(elements, size * 2);
-        }
+    public void addFromHead(E element) {
+        add(0, element);
     }
     
+    /*
+     * 时间复杂度：O(1)
+     */
+    @Override
+    public void addFromTail(E element) {
+        add(size, element);
+    }
+    
+    /*
+     * 时间复杂度：O(n)
+     */
     @Override
     public void add(int index, E element) throws IndexOutOfBoundsException {
         if (index < 0 || index > size) {
@@ -56,6 +65,9 @@ public class ArrayList<E extends Comparable<E>> implements List<E> {
         }
     }
     
+    /*
+     * 时间复杂度：O(n)
+     */
     @Override
     public void clear() {
         for (int i = 0; i < size; i++) {
@@ -66,6 +78,9 @@ public class ArrayList<E extends Comparable<E>> implements List<E> {
         initList();
     }
     
+    /*
+     * 时间复杂度：O(1)
+     */
     @Override
     public E get(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= size) {
@@ -74,6 +89,9 @@ public class ArrayList<E extends Comparable<E>> implements List<E> {
         return elements[index].getData();
     }
     
+    /*
+     * 时间复杂度：O(1)
+     */
     @Override
     public boolean isEmpty() {
         if (size == 0) {
@@ -83,6 +101,9 @@ public class ArrayList<E extends Comparable<E>> implements List<E> {
         }
     }
     
+    /*
+     * 时间复杂度：O(n)
+     */
     @Override
     public E remove(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= size) {
@@ -102,6 +123,9 @@ public class ArrayList<E extends Comparable<E>> implements List<E> {
         return node.getData();
     }
     
+    /*
+     * 时间复杂度：O(1)
+     */
     @Override
     public E set(int index, E element) throws IndexOutOfBoundsException {
         if (index < 0 || index >= size) {
@@ -128,6 +152,9 @@ public class ArrayList<E extends Comparable<E>> implements List<E> {
         return size;
     }
     
+    /*
+     * 时间复杂度：O(n^2)
+     */
     @Override
     public void union(List<E> list) {
         E tempElement = null;
@@ -135,11 +162,14 @@ public class ArrayList<E extends Comparable<E>> implements List<E> {
         for (int i = 0; i < tempSize; i++) {
             tempElement = list.get(i);
             if (search(tempElement) == -1) {
-                add(tempElement);
+                addFromTail(tempElement);
             }
         }
     }
     
+    /*
+     * 时间复杂度：O(n)
+     */
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder(500);

@@ -6,7 +6,8 @@ package com.minyazi.j2ee.test.datastructure;
  * @author minyazi
  */
 public class LinkedList<E extends Comparable<E>> implements List<E> {
-    private Node<E> rootNode; // 根结点
+    private Node<E> headPointer; // 头指针
+    private Node<E> tailPointer; // 尾指针
     private int size; // 线性表的大小
     
     public LinkedList() {
@@ -17,25 +18,30 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
      * 初始化线性表
      */
     private void initList() {
-        rootNode = null;
+        headPointer = null;
+        tailPointer = null;
         size = 0;
     }
     
+    /*
+     * 时间复杂度：O(1)
+     */
     @Override
-    public void add(E element) {
-        Node<E> node = new Node<E>(element);
-        if (size == 0) {
-            rootNode = node;
-        } else {
-            Node<E> tempNode = rootNode;
-            while(tempNode.getNext() != null) {
-                tempNode = tempNode.getNext();
-            }
-            tempNode.setNext(node);
-        }
-        size++; // 线性表的大小加1
+    public void addFromHead(E element) {
+        add(0, element);
     }
     
+    /*
+     * 时间复杂度：O(1)
+     */
+    @Override
+    public void addFromTail(E element) {
+        add(size, element);
+    }
+    
+    /*
+     * 时间复杂度：O(n)
+     */
     @Override
     public void add(int index, E element) throws IndexOutOfBoundsException {
         if (index < 0 || index > size) {
@@ -44,23 +50,31 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
         Node<E> node = new Node<E>(element);
         if (index == 0) { // 在线性表的首部插入元素
             if (size != 0) {
-                node.setNext(rootNode);
+                node.setNext(headPointer);
             }
-            rootNode = node;
+            headPointer = node;
+        } else if (index == size) { // 在线性表的尾部插入元素
+            tailPointer.setNext(node);
         } else { // 在线性表的其他位置插入元素
-            Node<E> tempNode = rootNode;
+            Node<E> tempNode = headPointer;
             for (int i = 1; i < index; i++) {
                 tempNode = tempNode.getNext();
             }
             node.setNext(tempNode.getNext());
             tempNode.setNext(node);
         }
+        if (node.getNext() == null) {
+            tailPointer = node;
+        }
         size++; // 线性表的大小加1
     }
     
+    /*
+     * 时间复杂度：O(n)
+     */
     @Override
     public void clear() {
-        Node<E> node = rootNode;
+        Node<E> node = headPointer;
         Node<E> tempNode = null;
         while (node != null) {
             tempNode = node.getNext();
@@ -72,18 +86,24 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
         initList();
     }
     
+    /*
+     * 时间复杂度：O(n)
+     */
     @Override
     public E get(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("索引越界");
         }
-        Node<E> node = rootNode;
+        Node<E> node = headPointer;
         for (int i = 1; i<= index; i++) {
             node = node.getNext();
         }
         return node.getData();
     }
     
+    /*
+     * 时间复杂度：O(1)
+     */
     @Override
     public boolean isEmpty() {
         if (size == 0) {
@@ -93,34 +113,46 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
         }
     }
     
+    /*
+     * 时间复杂度：O(n)
+     */
     @Override
     public E remove(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("索引越界");
         }
-        Node<E> node = rootNode;
+        Node<E> node = headPointer;
         if (index == 0) { // 在线性表的首部移除元素
-            rootNode = node.getNext();
+            headPointer = node.getNext();
             node.setNext(null);
+            if (headPointer == null) {
+                tailPointer = null;
+            }
         } else { // 在线性表的其他位置移除元素
-            Node<E> tempNode = rootNode;
+            Node<E> tempNode = headPointer;
             for (int i = 1; i < index; i++) {
                 tempNode = tempNode.getNext();
             }
             node = tempNode.getNext();
             tempNode.setNext(node.getNext());
             node.setNext(null);
+            if (tempNode.getNext() == null) {
+                tailPointer = tempNode;
+            }
         }
         size--; // 线性表的大小减1
         return node.getData();
     }
     
+    /*
+     * 时间复杂度：O(n)
+     */
     @Override
     public E set(int index, E element) throws IndexOutOfBoundsException {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("索引越界");
         }
-        Node<E> node = rootNode;
+        Node<E> node = headPointer;
         for (int i = 1; i <= index; i++) {
             node = node.getNext();
         }
@@ -144,6 +176,9 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
         return size;
     }
     
+    /*
+     * 时间复杂度：O(n^2)
+     */
     @Override
     public void union(List<E> list) {
         E tempElement = null;
@@ -151,16 +186,19 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
         for (int i = 0; i < tempSize; i++) {
             tempElement = list.get(i);
             if (search(tempElement) == -1) {
-                add(tempElement);
+                addFromTail(tempElement);
             }
         }
     }
     
+    /*
+     * 时间复杂度：O(n)
+     */
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder(500);
         result.append("[");
-        Node<E> node = rootNode;
+        Node<E> node = headPointer;
         while (node != null) {
             result.append(String.valueOf(node.getData()));
             node = node.getNext();

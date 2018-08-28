@@ -7,11 +7,18 @@ package com.minyazi.j2ee.test.datastructure;
  */
 public interface List<E extends Comparable<E>> {
     /**
-     * 在线性表的尾部插入元素
+     * 在线性表的头部插入元素（头插法）
      * 
      * @param element 要插入的元素
      */
-    void add(E element);
+    void addFromHead(E element);
+    
+    /**
+     * 在线性表的尾部插入元素（尾插法）
+     * 
+     * @param element 要插入的元素
+     */
+    void addFromTail(E element);
     
     /**
      * 在线性表的指定位置插入元素

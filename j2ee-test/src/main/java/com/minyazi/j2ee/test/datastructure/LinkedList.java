@@ -1,13 +1,13 @@
 package com.minyazi.j2ee.test.datastructure;
 
 /**
- * 线性表：链式存储结构
+ * 线性表：链式存储结构（动态链表）
  * 
  * @author minyazi
  */
 public class LinkedList<E extends Comparable<E>> implements List<E> {
-    private Node<E> headPointer; // 头指针
-    private Node<E> tailPointer; // 尾指针
+    private Node<E> headPointer; // 头指针（指向第一个结点）
+    private Node<E> tailPointer; // 尾指针（指向最后一个结点）
     private int size; // 线性表的大小
     
     public LinkedList() {
@@ -211,7 +211,7 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
     }
     
     public static void main(String[] args) {
-        List<String> list = new LinkedList<String>();
+        LinkedList<String> list = new LinkedList<String>();
         for (int i = 0; i < 20; i++) {
             list.add(i, i + "");
         }

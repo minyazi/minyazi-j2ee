@@ -8,12 +8,22 @@ import java.util.Arrays;
  * @author minyazi
  */
 public class ArrayList<E extends Comparable<E>> implements List<E> {
-    private int initialCapacity = 10;
+    private int initialCapacity = 10; // 初始容量
+    private int addCapacityCount; // 扩容次数
     private Node<E>[] elements;
     private int size; // 线性表的大小
     
     public ArrayList() {
         initList();
+    }
+    
+    /**
+     * 获取线性表的扩容次数
+     * 
+     * @return 线性表的扩容次数
+     */
+    public int getAddCapacityCount() {
+        return addCapacityCount;
     }
     
     /**
@@ -62,6 +72,7 @@ public class ArrayList<E extends Comparable<E>> implements List<E> {
         size++; // 线性表的大小加1
         if (size == elements.length) { // 扩容
             elements = Arrays.copyOf(elements, size * 2);
+            addCapacityCount++;
         }
     }
     
@@ -185,7 +196,7 @@ public class ArrayList<E extends Comparable<E>> implements List<E> {
     }
     
     public static void main(String[] args) {
-        List<String> list = new ArrayList<String>();
+        ArrayList<String> list = new ArrayList<String>();
         for (int i = 0; i < 20; i++) {
             list.add(i, i + "");
         }
@@ -194,5 +205,6 @@ public class ArrayList<E extends Comparable<E>> implements List<E> {
         System.out.println(list.toString());
         System.out.println(list.set(5, "a"));
         System.out.println(list.toString());
+        System.out.println("扩容次数：" + list.getAddCapacityCount());
     }
 }

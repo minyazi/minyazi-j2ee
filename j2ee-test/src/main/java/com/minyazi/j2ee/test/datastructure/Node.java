@@ -7,21 +7,23 @@ package com.minyazi.j2ee.test.datastructure;
  */
 public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
     private T data; // 数据域
-    private Node<T> next; // 指针域
+    private Node<T> next; // 指针域（用于实现动态链表）
+    private int cursor; // 游标（用于实现静态链表）
     
-    public Node() {
-        this.data = null;
-        this.next = null;
-    }
+    public Node() {}
     
     public Node(T data) {
         this.data = data;
-        this.next = null;
     }
     
     public Node(T data, Node<T> next) {
         this.data = data;
         this.next = next;
+    }
+    
+    public Node(T data, int cursor) {
+        this.data = data;
+        this.cursor = cursor;
     }
     
     public T getData() {
@@ -38,6 +40,14 @@ public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
     
     public void setNext(Node<T> next) {
         this.next = next;
+    }
+    
+    public int getCursor() {
+        return cursor;
+    }
+    
+    public void setCursor(int cursor) {
+        this.cursor = cursor;
     }
     
     @Override

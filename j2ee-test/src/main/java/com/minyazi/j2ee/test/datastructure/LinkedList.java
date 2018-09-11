@@ -78,6 +78,7 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
         Node<E> tempNode = null;
         while (node != null) {
             tempNode = node.getNext();
+            node.setData(null);
             node.setNext(null);
             node = tempNode;
         }
@@ -140,8 +141,10 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
                 tailPointer = tempNode;
             }
         }
+        E data = node.getData();
+        node.setData(null);
         size--; // 线性表的大小减1
-        return node.getData();
+        return data;
     }
     
     /*
@@ -156,9 +159,9 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
         for (int i = 1; i <= index; i++) {
             node = node.getNext();
         }
-        E tempElement = node.getData();
+        E data = node.getData();
         node.setData(element);
-        return tempElement;
+        return data;
     }
     
     @Override
@@ -181,12 +184,12 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
      */
     @Override
     public void union(List<E> list) {
-        E tempElement = null;
+        E data = null;
         int tempSize = list.size();
         for (int i = 0; i < tempSize; i++) {
-            tempElement = list.get(i);
-            if (search(tempElement) == -1) {
-                addFromTail(tempElement);
+            data = list.get(i);
+            if (search(data) == -1) {
+                addFromTail(data);
             }
         }
     }
@@ -216,7 +219,7 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
             list.add(i, i + "");
         }
         System.out.println(list.toString());
-        list.remove(5);
+        System.out.println(list.remove(5));
         System.out.println(list.toString());
         System.out.println(list.set(5, "a"));
         System.out.println(list.toString());

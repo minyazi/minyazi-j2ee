@@ -26,9 +26,6 @@ public class StaticLinkedList<E extends Comparable<E>> implements List<E> {
         return addCapacityCount;
     }
     
-
-
-
     /**
      * 初始化线性表
      * <p>
@@ -95,14 +92,20 @@ public class StaticLinkedList<E extends Comparable<E>> implements List<E> {
         elements[0].setCursor(index);
     }
     
+    /*
+     * 时间复杂度：O(1)
+     */
     @Override
     public void addFromHead(E element) {
-        
+        add(0, element);
     }
     
+    /*
+     * 时间复杂度：O(n)
+     */
     @Override
     public void addFromTail(E element) {
-        
+        add(size, element);
     }
     
     /*
@@ -130,14 +133,36 @@ public class StaticLinkedList<E extends Comparable<E>> implements List<E> {
         size++; // 线性表的大小加1
     }
     
+    /*
+     * 时间复杂度：O(n)
+     */
     @Override
     public void clear() {
+        int index = elements[elements.length - 1].getCursor();
+        int tempIndex = 0;
+        while (index != 0) {
+            tempIndex = elements[index].getCursor();
+            free(index);
+            index = tempIndex;
+        }
         
+        // 重新初始化线性表
+        initList();
     }
     
+    /*
+     * 时间复杂度：O(n)
+     */
     @Override
     public E get(int index) throws IndexOutOfBoundsException {
-        return null;
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("索引越界");
+        }
+        int tempIndex = elements[elements.length - 1].getCursor();
+        for (int i = 1; i <= index; i++) {
+            tempIndex = elements[tempIndex].getCursor();
+        }
+        return elements[tempIndex].getData();
     }
     
     /*
@@ -152,14 +177,46 @@ public class StaticLinkedList<E extends Comparable<E>> implements List<E> {
         }
     }
     
+    /*
+     * 时间复杂度：O(n)
+     */
     @Override
     public E remove(int index) throws IndexOutOfBoundsException {
-        return null;
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("索引越界");
+        }
+        int tempIndex = elements[elements.length - 1].getCursor();
+        if (index == 0) { // 在线性表的首部移除元素
+            elements[elements.length - 1].setCursor(elements[tempIndex].getCursor());
+        } else { // 在线性表的其他位置移除元素
+            Node<E> tempNode = elements[tempIndex];
+            for (int i = 1; i < index; i++) {
+                tempNode = elements[tempNode.getCursor()];
+            }
+            tempIndex = tempNode.getCursor();
+            tempNode.setCursor(elements[tempIndex].getCursor());
+        }
+        E data = elements[tempIndex].getData();
+        free(tempIndex);
+        size--; // 线性表的大小减1
+        return data;
     }
     
+    /*
+     * 时间复杂度：O(n)
+     */
     @Override
     public E set(int index, E element) throws IndexOutOfBoundsException {
-        return null;
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("索引越界");
+        }
+        int tempIndex = elements[elements.length - 1].getCursor();
+        for (int i = 1; i <= index; i++) {
+            tempIndex = elements[tempIndex].getCursor();
+        }
+        E data = elements[tempIndex].getData();
+        elements[tempIndex].setData(element);
+        return data;
     }
     
     @Override
@@ -179,7 +236,14 @@ public class StaticLinkedList<E extends Comparable<E>> implements List<E> {
     
     @Override
     public void union(List<E> list) {
-        
+        E data = null;
+        int tempSize = list.size();
+        for (int i = 0; i < tempSize; i++) {
+            data = list.get(i);
+            if (search(data) == -1) {
+                addFromTail(data);
+            }
+        }
     }
     
     /*
@@ -211,7 +275,7 @@ public class StaticLinkedList<E extends Comparable<E>> implements List<E> {
             list.add(i, i + "");
         }
         System.out.println(list.toString());
-        list.remove(5);
+        System.out.println(list.remove(5));
         System.out.println(list.toString());
         System.out.println(list.set(5, "a"));
         System.out.println(list.toString());

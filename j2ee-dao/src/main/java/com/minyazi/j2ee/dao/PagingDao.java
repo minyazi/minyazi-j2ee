@@ -7,14 +7,13 @@ import java.util.List;
  * 
  * @author minyazi
  */
-public interface PagingDao<T> {
+public interface PagingDao<T> extends BaseDao<T> {
     /**
      * 查询总记录数
      * 
      * @return 总记录数
-     * @throws DaoException DAO异常
      */
-    int getTotalNumber() throws DaoException;
+    int getTotalNumber();
     
     /**
      * 分页查询数据
@@ -22,18 +21,16 @@ public interface PagingDao<T> {
      * @param offset 开始记录索引
      * @param pageSize 每页记录数
      * @return 查询结果
-     * @throws DaoException DAO异常
      */
-    List<T> selectToPaging(int offset, int pageSize) throws DaoException;
+    List<T> selectToPaging(int offset, int pageSize);
     
     /**
      * 查询总记录数
      * 
      * @param queryCondition 查询条件
      * @return 总记录数
-     * @throws DaoException DAO异常
      */
-    int getTotalNumber(String queryCondition) throws DaoException;
+    int getTotalNumber(String queryCondition);
     
     /**
      * 分页查询数据
@@ -42,7 +39,6 @@ public interface PagingDao<T> {
      * @param pageSize 每页记录数
      * @param queryCondition 查询条件
      * @return 查询结果
-     * @throws DaoException DAO异常
      */
-    List<T> selectToPaging(int offset, int pageSize, String queryCondition) throws DaoException;
+    List<T> selectToPaging(int offset, int pageSize, String queryCondition);
 }

@@ -67,7 +67,39 @@ public final class StringUtil {
      * @return 如果String等于null，则返回空字符串，否则返回String本身
      */
     public static String formatNullString(String value) {
-        return value == null ? "" : value;
+        return formatNullString(value, "");
+    }
+    
+    /**
+     * 格式化null字符串
+     * 
+     * @param value 要格式化的String
+     * @param defaultValue 缺省值
+     * @return 如果String等于null，则返回缺省值，否则返回String本身
+     */
+    public static String formatNullString(String value, String defaultValue) {
+        return value == null ? defaultValue : value;
+    }
+    
+    /**
+     * 格式化null数字
+     * 
+     * @param value 要格式化的Number
+     * @return 如果Number等于null或空字符串，则返回null，否则返回Number本身
+     */
+    public static String formatNullNumber(String value) {
+        return formatNullAmount(value, null);
+    }
+    
+    /**
+     * 格式化null数字
+     * 
+     * @param value 要格式化的Number
+     * @param defaultValue 缺省值
+     * @return 如果Number等于null或空字符串，则返回缺省值，否则返回Number本身
+     */
+    public static String formatNullNumber(String value, String defaultValue) {
+        return (value == null || value.trim().equals("")) ? defaultValue : value;
     }
     
     /**
@@ -77,7 +109,18 @@ public final class StringUtil {
      * @return 如果Amount等于null或空字符串，则返回null，否则返回Amount本身
      */
     public static String formatNullAmount(String value) {
-        return (value == null || value.trim().equals("")) ? null : value;
+        return formatNullAmount(value, null);
+    }
+    
+    /**
+     * 格式化null金额
+     * 
+     * @param value 要格式化的Amount
+     * @param defaultValue 缺省值
+     * @return 如果Amount等于null或空字符串，则返回缺省值，否则返回Amount本身
+     */
+    public static String formatNullAmount(String value, String defaultValue) {
+        return (value == null || value.trim().equals("")) ? defaultValue : value;
     }
     
     /**

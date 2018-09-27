@@ -90,6 +90,45 @@ public final class TarUtil {
     /**
      * 归档
      * 
+     * @param sources 要归档的文件或目录列表
+     * @param targetFile 归档后的文件
+     */
+    public static void archive(File[] sources, String targetFile) {
+        archive(sources, new File(targetFile));
+    }
+    
+    /**
+     * 归档
+     * 
+     * @param sources 要归档的文件或目录列表
+     * @param targetFile 归档后的文件
+     */
+    public static void archive(File[] sources, File targetFile) {
+        TarArchiveOutputStream tar = null;
+        try {
+            tar = new TarArchiveOutputStream(new FileOutputStream(targetFile));
+            for (File source : sources) {
+                archive(source, tar, "");
+            }
+            tar.finish();
+            tar.flush();
+        } catch (IOException e) {
+            throw new PlatformException("归档文件或目录出错：" + e.getMessage(), e);
+        } finally {
+            try {
+                if (tar != null) {
+                    tar.close();
+                    tar = null;
+                }
+            } catch (IOException e) {
+                throw new PlatformException("归档文件或目录出错：" + e.getMessage(), e);
+            }
+        }
+    }
+    
+    /**
+     * 归档
+     * 
      * @param source 要归档的文件或目录
      * @param tar Tar归档输出流
      * @param basePath 归档包内相对路径

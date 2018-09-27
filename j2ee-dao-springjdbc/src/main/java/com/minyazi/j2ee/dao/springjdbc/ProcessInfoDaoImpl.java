@@ -15,105 +15,120 @@ import com.minyazi.j2ee.dao.domain.ProcessInfoDO;
  * @author minyazi
  */
 @Repository("processInfoDao")
-public class ProcessInfoDaoImpl extends DefaultDao<ProcessInfoDO> implements ProcessInfoDao {
+public class ProcessInfoDaoImpl extends DefaultDao implements ProcessInfoDao {
     public ProcessInfoDaoImpl() {}
     
     @Override
-    public ProcessInfoDO insert(ProcessInfoDO info) throws DaoException {
+    public ProcessInfoDO insert(ProcessInfoDO data) throws DaoException {
         StringBuilder sql = new StringBuilder(500);
         sql.append("insert into ProcessInfo (");
         sql.append("processCode,");
         sql.append("processMesg");
         sql.append(") values (?,?)");
         
-        Object[] params = {info.getProcessCode(),
-                info.getProcessMesg()};
+        Object[] params = {data.getProcessCode(),
+                data.getProcessMesg()};
         
-        int result = getCommonDao().update(sql.toString(), params);
+        int result = commonDao.update(sql.toString(), params);
         if (result != 1) {
             throw new DaoException("新增处理信息失败");
         }
         
-        return info;
+        return data;
     }
     
     @Override
-    public void deleteById(String processCode) throws DaoException {
+    public ProcessInfoDO deleteById(String id) throws DaoException {
+        ProcessInfoDO data = selectById(id);
+        if (data == null) {
+            throw new DaoException("待删除的处理信息不存在");
+        }
+        
         StringBuilder sql = new StringBuilder(500);
         sql.append("delete from ProcessInfo where processCode=?");
         
-        Object[] params = {processCode};
+        Object[] params = {id};
         
-        getCommonDao().update(sql.toString(), params);
+        int result = commonDao.update(sql.toString(), params);
+        if (result != 1) {
+            throw new DaoException("删除处理信息失败");
+        }
+        
+        return data;
     }
     
     @Override
-    public void deleteAll() throws DaoException {
+    public int deleteAll() {
         StringBuilder sql = new StringBuilder(500);
         sql.append("delete from ProcessInfo");
-        getCommonDao().update(sql.toString());
+        int result = commonDao.update(sql.toString());
+        return result;
     }
     
     @Override
-    public ProcessInfoDO update(ProcessInfoDO info) throws DaoException {
+    public ProcessInfoDO update(ProcessInfoDO data) throws DaoException {
+        if (selectById(data.getProcessCode()) == null) {
+            throw new DaoException("待修改的处理信息不存在");
+        }
+        
         StringBuilder sql = new StringBuilder(500);
         sql.append("update ProcessInfo set ");
         sql.append("processMesg=?");
         sql.append(" where processCode=?");
         
-        Object[] params = {info.getProcessMesg(),
-                info.getProcessCode()};
+        Object[] params = {data.getProcessMesg(),
+                data.getProcessCode()};
         
-        int result = getCommonDao().update(sql.toString(), params);
+        int result = commonDao.update(sql.toString(), params);
         if (result != 1) {
             throw new DaoException("修改处理信息失败");
         }
         
-        return selectById(info.getProcessCode());
+        return selectById(data.getProcessCode());
     }
     
     @Override
-    public ProcessInfoDO selectById(String processCode) throws DaoException {
+    public ProcessInfoDO selectById(String id) {
         StringBuilder sql = new StringBuilder(500);
         sql.append("select * from ProcessInfo where processCode=?");
         
-        Object[] params = {processCode};
+        Object[] params = {id};
         
-        return getCommonDao().selectToBean(ProcessInfoDO.class, sql.toString(), params);
+        return commonDao.selectToBean(ProcessInfoDO.class, sql.toString(), params);
     }
     
     @Override
-    public List<ProcessInfoDO> selectAll() throws DaoException {
+    public List<ProcessInfoDO> selectAll() {
         StringBuilder sql = new StringBuilder(500);
         sql.append("select * from ProcessInfo order by processCode");
-        return getCommonDao().selectToList(ProcessInfoDO.class, sql.toString());
+        return commonDao.selectToList(ProcessInfoDO.class, sql.toString());
     }
     
     @Override
-    public int getTotalNumber() throws DaoException {
+    public int getTotalNumber() {
         StringBuilder sql = new StringBuilder(500);
         sql.append("select * from ProcessInfo");
-        return getCommonDao().getTotalNumber(sql.toString());
+        return commonDao.getTotalNumber(sql.toString());
     }
     
     @Override
-    public List<ProcessInfoDO> selectToPaging(int offset, int pageSize) throws DaoException {
+    public List<ProcessInfoDO> selectToPaging(int offset, int pageSize) {
         StringBuilder sql = new StringBuilder(500);
         sql.append("select * from ProcessInfo order by processCode");
-        return getCommonDao().selectToPaging(ProcessInfoDO.class, offset, pageSize, sql.toString());
+        return commonDao.selectToPaging(ProcessInfoDO.class, offset, pageSize, sql.toString());
     }
     
     @Override
-    public int getTotalNumber(String queryCondition) throws DaoException {
+    public int getTotalNumber(String queryCondition) {
         StringBuilder sql = new StringBuilder(500);
         sql.append("select * from ProcessInfo where 1=1 ").append(queryCondition);
-        return getCommonDao().getTotalNumber(sql.toString());
+        return commonDao.getTotalNumber(sql.toString());
     }
     
     @Override
-    public List<ProcessInfoDO> selectToPaging(int offset, int pageSize, String queryCondition) throws DaoException {
+    public List<ProcessInfoDO> selectToPaging(int offset, int pageSize, String queryCondition) {
         StringBuilder sql = new StringBuilder(500);
         sql.append("select * from ProcessInfo where 1=1 ").append(queryCondition).append(" order by processCode");
-        return getCommonDao().selectToPaging(ProcessInfoDO.class, offset, pageSize, sql.toString());
+        return commonDao.selectToPaging(ProcessInfoDO.class, offset, pageSize, sql.toString());
     }
 }

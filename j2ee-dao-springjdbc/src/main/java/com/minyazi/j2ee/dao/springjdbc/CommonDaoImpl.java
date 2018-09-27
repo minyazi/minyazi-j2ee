@@ -29,17 +29,13 @@ import com.minyazi.j2ee.dao.CommonDao;
  */
 @Repository("commonDao")
 public class CommonDaoImpl implements CommonDao {
+    @Autowired
     private JdbcTemplate jdbcTemplate;
     
     public CommonDaoImpl() {}
     
     public JdbcTemplate getJdbcTemplate() {
         return jdbcTemplate;
-    }
-    
-    @Autowired
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
     }
     
     /**

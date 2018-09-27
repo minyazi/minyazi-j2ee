@@ -68,6 +68,11 @@
             <artifactId>log4j</artifactId>
             <optional>true</optional>
         </dependency>
+        <!-- spring-test -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+        </dependency>
         <!-- junit -->
         <dependency>
             <groupId>junit</groupId>

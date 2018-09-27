@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 /**
- * DAO Bean配置
+ * DAO Beans配置
  * 
  * @author minyazi
  */

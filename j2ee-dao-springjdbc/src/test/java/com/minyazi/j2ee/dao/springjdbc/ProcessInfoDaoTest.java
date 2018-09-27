@@ -4,33 +4,38 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.minyazi.j2ee.dao.ProcessInfoDao;
 import com.minyazi.j2ee.dao.domain.ProcessInfoDO;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:j2ee-dao.xml")
 public class ProcessInfoDaoTest {
-    private ApplicationContext context;
+    @Autowired
     private ProcessInfoDao processInfoDao;
     
     @Before
-    public void init() throws Exception {
-        context = new ClassPathXmlApplicationContext("j2ee-dao.xml");
-        processInfoDao = context.getBean("processInfoDao", ProcessInfoDao.class);
-        
-        processInfoDao.deleteAll();
-        
+    public void beforeTest() {
         ProcessInfoDO info = new ProcessInfoDO();
         info.setProcessCode("PC000000");
         info.setProcessMesg("处理成功");
         processInfoDao.insert(info);
     }
     
+    @After
+    public void afterTest() {
+        processInfoDao.deleteAll();
+    }
+    
     @Test
-    public void testInsert() throws Exception {
+    public void testInsert() {
         assertNull(processInfoDao.selectById("PC999999"));
         
         ProcessInfoDO info = new ProcessInfoDO();
@@ -42,14 +47,14 @@ public class ProcessInfoDaoTest {
     }
     
     @Test
-    public void testDelete() throws Exception {
+    public void testDelete() {
         assertNotNull(processInfoDao.selectById("PC000000"));
         processInfoDao.deleteById("PC000000");
         assertNull(processInfoDao.selectById("PC000000"));
     }
     
     @Test
-    public void testUpdate() throws Exception {
+    public void testUpdate() {
         ProcessInfoDO info = processInfoDao.selectById("PC000000");
         assertNotNull(info);
         info.setProcessMesg("处理失败");
@@ -62,7 +67,7 @@ public class ProcessInfoDaoTest {
     }
     
     @Test
-    public void testSelect() throws Exception {
+    public void testSelect() {
         ProcessInfoDO info = processInfoDao.selectById("PC000000");
         assertNotNull(info);
         assertEquals("PC000000", info.getProcessCode());

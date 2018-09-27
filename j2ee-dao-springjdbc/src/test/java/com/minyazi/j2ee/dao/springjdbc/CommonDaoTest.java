@@ -4,29 +4,34 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.jdbc.support.rowset.SqlRowSetMetaData;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.minyazi.j2ee.core.util.LogUtil;
 import com.minyazi.j2ee.dao.DaoBeansConfig;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = DaoBeansConfig.class)
 public class CommonDaoTest {
-    private ApplicationContext context;
+    @Autowired
     private CommonDaoImpl commonDao;
     
     @Before
-    public void init() throws Exception {
-        context = new AnnotationConfigApplicationContext(DaoBeansConfig.class);
-        commonDao = context.getBean("commonDao", CommonDaoImpl.class);
-    }
+    public void beforeTest() {}
+    
+    @After
+    public void afterTest() {}
     
     @Test
-    public void test() throws Exception {
+    public void test() {
         /*
         drop table if exists data;
         create table data (
@@ -66,7 +71,7 @@ public class CommonDaoTest {
     }
     
     @Test
-    public void testInsert() throws Exception {
+    public void testInsert() {
         Map<String, String> data = new HashMap<String, String>();
         data.put("FD_A", "A");
         data.put("FD_B", "B");

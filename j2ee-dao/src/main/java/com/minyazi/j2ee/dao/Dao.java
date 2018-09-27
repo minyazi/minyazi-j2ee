@@ -1,10 +1,10 @@
 package com.minyazi.j2ee.dao;
 
 /**
- * 公共DAO
+ * DAO
  * 
  * @author minyazi
  */
-public interface CommonDao extends Dao {
+public interface Dao {
     
 }

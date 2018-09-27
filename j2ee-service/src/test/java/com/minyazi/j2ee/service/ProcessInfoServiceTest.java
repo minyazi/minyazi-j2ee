@@ -1,26 +1,29 @@
 package com.minyazi.j2ee.service;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.minyazi.j2ee.core.util.LogUtil;
-import com.minyazi.j2ee.service.ProcessInfoService;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:j2ee-service-springjdbc.xml")
 public class ProcessInfoServiceTest {
-    private ApplicationContext context;
+    @Autowired
     private ProcessInfoService processInfoService;
     
     @Before
-    public void init() throws Exception {
-        String[] springConfigFiles = {"j2ee-dao.xml", "j2ee-service-springjdbc.xml"};
-        context = new ClassPathXmlApplicationContext(springConfigFiles);
-        processInfoService = context.getBean("processInfoService", ProcessInfoService.class);
-    }
+    public void beforeTest() {}
+    
+    @After
+    public void afterTest() {}
     
     @Test
-    public void test() throws Exception {
+    public void test() {
         LogUtil.info(processInfoService.listToPaging(1, 10).toString());
         LogUtil.info(processInfoService.listToPaging(1, 10, "and processCode!='PC000000'").toString());
     }

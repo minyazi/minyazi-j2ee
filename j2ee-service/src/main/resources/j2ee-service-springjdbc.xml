@@ -10,7 +10,10 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
-    <!-- Beans -->
+    <!-- DAO Beans -->
+    <import resource="j2ee-dao.xml" />
+    
+    <!-- Service Beans -->
     <context:component-scan base-package="com.minyazi.j2ee.service.impl">
         <context:include-filter type="regex" expression="com.minyazi.j2ee.service.impl.*Impl" />
     </context:component-scan>
@@ -27,10 +30,19 @@
     <!-- 配置方式声明式事务管理 -->
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
+            <tx:method name="generateSequence" propagation="REQUIRES_NEW" rollback-for="Exception" />
+            <tx:method name="insert*" propagation="REQUIRED" rollback-for="Exception" />
+            <tx:method name="add*" propagation="REQUIRED" rollback-for="Exception" />
             <tx:method name="save*" propagation="REQUIRED" rollback-for="Exception" />
+            <tx:method name="delete*" propagation="REQUIRED" rollback-for="Exception" />
             <tx:method name="remove*" propagation="REQUIRED" rollback-for="Exception" />
+            <tx:method name="update*" propagation="REQUIRED" rollback-for="Exception" />
             <tx:method name="modify*" propagation="REQUIRED" rollback-for="Exception" />
+            <tx:method name="rollback*" propagation="REQUIRED" rollback-for="Exception" />
+            <tx:method name="select*" read-only="true" propagation="SUPPORTS" />
             <tx:method name="get*" read-only="true" propagation="SUPPORTS" />
+            <tx:method name="find*" read-only="true" propagation="SUPPORTS" />
+            <tx:method name="query*" read-only="true" propagation="SUPPORTS" />
             <tx:method name="list*" read-only="true" propagation="SUPPORTS" />
             <tx:method name="count*" read-only="true" propagation="SUPPORTS" />
             <tx:method name="*" read-only="true" propagation="REQUIRED" />
@@ -44,8 +56,6 @@
     <!-- 定时任务管理 -->
     <task:scheduled-tasks>
         <task:scheduled ref="commonService" method="testTask" cron="0 0 7 * * ?" /><!-- 每天早上7点执行一次 -->
-    </task:scheduled-tasks>
-    <task:scheduled-tasks>
         <task:scheduled ref="commonService" method="testTask" cron="0 0/30 * * * ?" /><!-- 每隔30分钟执行一次 -->
     </task:scheduled-tasks>
 </beans>

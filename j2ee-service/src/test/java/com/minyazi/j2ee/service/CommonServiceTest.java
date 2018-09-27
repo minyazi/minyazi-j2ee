@@ -1,22 +1,27 @@
 package com.minyazi.j2ee.service;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = ServiceBeansConfig.class)
 public class CommonServiceTest {
-    private ApplicationContext context;
+    @Autowired
     private CommonService commonService;
     
     @Before
-    public void init() throws Exception {
-        context = new AnnotationConfigApplicationContext(ServiceBeansConfig.class);
-        commonService = context.getBean("commonService", CommonService.class);
-    }
+    public void beforeTest() {}
+    
+    @After
+    public void afterTest() {}
     
     @Test
-    public void testTask() throws Exception {
+    public void testTask() {
         commonService.testTask();
     }
 }

@@ -11,7 +11,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import com.minyazi.j2ee.dao.DaoBeansConfig;
 
 /**
- * Service Bean配置
+ * Service Beans配置
  * 
  * @author minyazi
  */
@@ -24,7 +24,4 @@ public class ServiceBeansConfig {
     public DataSourceTransactionManager transactionManager(DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }
-    
-    
-    
 }

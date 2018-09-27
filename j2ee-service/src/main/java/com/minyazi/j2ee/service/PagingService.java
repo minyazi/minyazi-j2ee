@@ -7,16 +7,15 @@ import com.minyazi.j2ee.service.dto.PagingDTO;
  * 
  * @author minyazi
  */
-public interface PagingService<T> {
+public interface PagingService<T> extends BaseService<T> {
     /**
      * 获取分页数据
      * 
      * @param page 页码
      * @param pageSize 每页记录数
      * @return 分页数据
-     * @throws ServiceException Service异常
      */
-    PagingDTO<T> listToPaging(int page, int pageSize) throws ServiceException;
+    PagingDTO<T> listToPaging(int page, int pageSize);
     
     /**
      * 获取分页数据
@@ -25,7 +24,6 @@ public interface PagingService<T> {
      * @param pageSize 每页记录数
      * @param queryCondition 查询条件
      * @return 分页数据
-     * @throws ServiceException Service异常
      */
-    PagingDTO<T> listToPaging(int page, int pageSize, String queryCondition) throws ServiceException;
+    PagingDTO<T> listToPaging(int page, int pageSize, String queryCondition);
 }

@@ -7,6 +7,6 @@ import com.minyazi.j2ee.dao.domain.ProcessInfoDO;
  * 
  * @author minyazi
  */
-public interface ProcessInfoService extends BaseService, PagingService<ProcessInfoDO> {
+public interface ProcessInfoService extends PagingService<ProcessInfoDO> {
     
 }

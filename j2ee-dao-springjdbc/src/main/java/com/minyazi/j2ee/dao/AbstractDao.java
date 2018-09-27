@@ -5,13 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.minyazi.j2ee.dao.springjdbc.CommonDaoImpl;
 
 /**
- * Default DAO
+ * Abstract DAO
  * 
  * @author minyazi
  */
-public abstract class DefaultDao implements Dao {
+public abstract class AbstractDao implements Dao {
     @Autowired
     protected CommonDaoImpl commonDao;
     
-    public DefaultDao() {}
+    public AbstractDao() {}
 }

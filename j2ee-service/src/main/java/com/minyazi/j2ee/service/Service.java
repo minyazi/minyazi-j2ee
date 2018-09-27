@@ -1,10 +1,10 @@
 package com.minyazi.j2ee.service;
 
 /**
- * Base Service
+ * Service
  * 
  * @author minyazi
  */
-public interface BaseService<T> extends Service {
+public interface Service {
     
 }

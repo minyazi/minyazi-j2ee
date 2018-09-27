@@ -5,11 +5,9 @@ package com.minyazi.j2ee.service;
  * 
  * @author minyazi
  */
-public interface CommonService {
+public interface CommonService extends Service {
     /**
      * 测试定时任务
-     * 
-     * @throws ServiceException Service异常
      */
-    void testTask() throws ServiceException;
+    void testTask();
 }

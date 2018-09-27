@@ -4,5 +4,5 @@ import javax.jws.WebService;
 
 @WebService
 public interface HelloWorldWebService {
-    String sayHelloWorld(String text) throws WebServiceException;
+    String sayHelloWorld(String text);
 }

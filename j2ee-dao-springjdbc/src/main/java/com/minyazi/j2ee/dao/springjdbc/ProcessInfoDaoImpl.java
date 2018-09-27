@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.minyazi.j2ee.dao.DaoException;
-import com.minyazi.j2ee.dao.DefaultDao;
+import com.minyazi.j2ee.dao.AbstractDao;
 import com.minyazi.j2ee.dao.ProcessInfoDao;
 import com.minyazi.j2ee.dao.domain.ProcessInfoDO;
 
@@ -15,7 +15,7 @@ import com.minyazi.j2ee.dao.domain.ProcessInfoDO;
  * @author minyazi
  */
 @Repository("processInfoDao")
-public class ProcessInfoDaoImpl extends DefaultDao implements ProcessInfoDao {
+public class ProcessInfoDaoImpl extends AbstractDao implements ProcessInfoDao {
     public ProcessInfoDaoImpl() {}
     
     @Override

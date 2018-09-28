@@ -20,7 +20,7 @@ public class DaoBeansConfig {
     // C3P0数据源
     @Bean(name="dataSource", destroyMethod="close")
     public DataSource dataSource() {
-        return new ComboPooledDataSource("testdb");
+        return new ComboPooledDataSource("j2eedb");
     }
     
     // Spring JdbcTemplate

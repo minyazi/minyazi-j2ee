@@ -32,19 +32,8 @@ public class CommonDaoTest {
     
     @Test
     public void test() {
-        /*
-        drop table if exists data;
-        create table data (
-            FD_A     char(10)          not null,
-            FD_B     varchar(20)       not null,
-            FD_C     decimal(16,2)     not null,
-            FD_D     text              not null,
-            FD_E     int               not null,
-            FD_F     decimal(16,2)         null
-        );
-        */
         JdbcTemplate jdbcTemplate = commonDao.getJdbcTemplate();
-        SqlRowSet srs = jdbcTemplate.queryForRowSet("select * from data limit 0");
+        SqlRowSet srs = jdbcTemplate.queryForRowSet("select * from test limit 0");
         SqlRowSetMetaData srsmd = srs.getMetaData();
         LogUtil.info("**************************************************");
         LogUtil.info("ColumnCount       : " + srsmd.getColumnCount());
@@ -79,6 +68,6 @@ public class CommonDaoTest {
         data.put("FD_D", "D");
         data.put("FD_E", "1");
         data.put("FD_F", "");
-        commonDao.insert("data", data);
+        commonDao.insert("test", data);
     }
 }

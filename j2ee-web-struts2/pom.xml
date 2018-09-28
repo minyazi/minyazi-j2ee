@@ -122,7 +122,7 @@
     </dependencies>
     
     <build>
-        <finalName>j2ee-web</finalName>
+        <finalName>j2ee-web-struts2</finalName>
         <plugins>
             <!-- 配置打包时将依赖的jar包拷贝到指定目录 
             <plugin>

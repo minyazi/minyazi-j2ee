@@ -39,7 +39,9 @@ public final class MD5Util {
     public static String encodeFile(File file) {
         try {
             FileInputStream fis = new FileInputStream(file);
-            return DigestUtils.md5Hex(fis);
+            String result = DigestUtils.md5Hex(fis);
+            fis.close();
+            return result;
         } catch (FileNotFoundException e) {
             PlatformException pe = new PlatformException("MD5加密文件出错：" + e.getMessage(), e);
             LogUtil.exception(pe);

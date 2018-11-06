@@ -16,13 +16,13 @@ public class TestCounter {
         long endTime = System.currentTimeMillis();
         System.out.println("算法一耗时：" + (endTime - beginTime) + "毫秒");
         
-        Counter secondCounter = new SecondCounter(2);
+        Counter secondCounter = new SecondCounter(4);
         beginTime = System.currentTimeMillis();
         System.out.println(secondCounter.count(numbers));
         endTime = System.currentTimeMillis();
         System.out.println("算法二耗时：" + (endTime - beginTime) + "毫秒");
         
-        Counter thirdCounter = new ThirdCounter();
+        Counter thirdCounter = new ThirdCounter(4, 100000);
         beginTime = System.currentTimeMillis();
         System.out.println(thirdCounter.count(numbers));
         endTime = System.currentTimeMillis();

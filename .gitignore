@@ -1,4 +1,11 @@
-﻿*/.settings/*
-*/target/*
+﻿# Eclipse project files
+.classpath
 */.classpath
+.project
 */.project
+.settings
+*/.settings
+
+# Build targets
+target
+*/target

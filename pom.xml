@@ -9,18 +9,18 @@
     <name>J2EE Parent</name>
     
     <modules>
-        <module>../j2ee-common</module>
-        <module>../j2ee-core</module>
-        <module>../j2ee-dao</module>
-        <!--<module>../j2ee-dao-xml</module>-->
-        <!--<module>../j2ee-dao-jpa</module>-->
-        <module>../j2ee-dao-springjdbc</module>
-        <!--<module>../j2ee-dao-hibernate</module>-->
-        <!--<module>../j2ee-dao-mybatis</module>-->
-        <module>../j2ee-service</module>
-        <module>../j2ee-web-struts2</module>
-        <module>../j2ee-web-springmvc</module>
-        <module>../j2ee-test</module>
+        <module>j2ee-common</module>
+        <module>j2ee-core</module>
+        <module>j2ee-dao</module>
+        <!--<module>j2ee-dao-xml</module>-->
+        <!--<module>j2ee-dao-jpa</module>-->
+        <module>j2ee-dao-springjdbc</module>
+        <!--<module>j2ee-dao-hibernate</module>-->
+        <!--<module>j2ee-dao-mybatis</module>-->
+        <module>j2ee-service</module>
+        <module>j2ee-web-struts2</module>
+        <module>j2ee-web-springmvc</module>
+        <module>j2ee-test</module>
     </modules>
     
     <properties>

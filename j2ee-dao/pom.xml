@@ -7,10 +7,11 @@
         <groupId>com.minyazi.j2ee</groupId>
         <artifactId>j2ee-parent</artifactId>
         <version>1.0.0</version>
-        <relativePath>../j2ee-parent/pom.xml</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     
     <artifactId>j2ee-dao</artifactId>
+    <packaging>jar</packaging>
     <name>J2EE DAO</name>
     
     <dependencies>
